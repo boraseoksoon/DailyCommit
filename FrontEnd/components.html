@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+	   	<!-- 합쳐지고 최소화된 최신 CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<!-- 부가적인 테마 -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+		<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+	<ul id="nav-tabs1" class="nav nav-tabs">
+	  <li id="nav-tabs-li1" role="presentation" class=""><a href="#">Home</a></li>
+	  <li id="nav-tabs-li2" role="presentation" class="active"><a href="#">Profile</a></li>
+	  <li id="nav-tabs-li3" role="presentation"><a href="#">Messages</a></li>
+	</ul>		
+	<br>
+	
+	<ul id="nav-pills1" class="nav nav-pills">
+  		<li id="nav-pills-li1" role="presentation" class="active"><a href="#">Home</a></li>
+  		<li id="nav-pills-li2" role="presentation"><a href="#">Profile</a></li>
+  		<li id="nav-pills-li3" role="presentation"><a href="#">Messages</a></li>
+	</ul>
+
+	<script>
+		
+		$(document).ready(function () {
+        	$('#nav-tabs1 ').find('li').bind('click', function(event){
+        		console.log('clicked : ' + $(this).index())
+        		$(this).siblings().removeClass()
+        		$(this).addClass('active')
+        	})
+
+
+        	$('#nav-pills1').find('li').bind('click', function(){
+        		$(this).siblings().removeClass()
+        		$(this).addClass('active')
+        	})
+        });
+
+
+
+        
+	</script>
+
+	</body>
+</html>
+
+

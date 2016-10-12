@@ -1,0 +1,138 @@
+<!-- 
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            span {
+            }
+        </style>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+    </head>
+    <body>
+        <p>
+            <input type="text" />
+            <span></span>
+        </p>
+        <script>
+            $("input").focus( function (e) {
+                console.log("focus : " + $(e.target).val())
+                $(this).next("span").html('focus');
+            }).blur( function(t) {
+                console.log("blur : " + $(t.target).val())
+                $(this).next("span").html('blur');
+            }).change(function(e){
+                alert('change!! : ' + $(e.target).val());
+            }).select(function(f){
+                console.log("select : " + $(f.target).val())
+                $(this).next('span').html('select');
+            });
+        </script>
+    </body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            p {
+                margin:0;
+                color:blue;
+            }
+            div, p {
+                margin-left:10px;
+            }
+            span {
+                color:red;
+            }
+
+            .correct {
+                color:blue;
+            }
+
+            .incorrect {
+                color:red;
+            }
+        </style>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+    </head>
+    <body>
+        <p>
+            Type 'correct' to validate.
+        </p>
+        <form action="javascript:alert('success!');">
+            <div>
+                <input type="text" value="text1"/>
+                <input type="submit" />
+            </div>
+        </form>
+        <p id="run_text" class="incorrect">
+            hey, I'll catch up with you.
+        </p>
+        <span></span>
+        <script type="text/javascript">
+            $("input:first").keyup(function () {
+                var value = $(this).val();
+                $("#run_text").text(value);
+            }).keyup();
+        </script>
+
+        <br>
+        <input type="button" value="stop" id="recursion_control" />
+        <script>
+            $("#recursion_control").bind('click', function(e){
+
+                if ($(this).val() == 'stop') {
+                    $(this).val('start')
+                } else {
+                    $(this).val('stop')
+                }
+            })
+            
+            function getRandomColor() {
+                var letters = '0123456789ABCDEF';
+                var color = '#';
+                for (var i = 0; i < 6; i++ ) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+
+            // 망치를 들면 못밖에 안 보인다고.
+            var recursionLoopCount = 0
+            function recursiveAnimation() {
+
+                if ($('#recursion_control').val() != "stop") {
+                    return true
+                } else {
+                    // do in the above closure.
+                }
+
+                // console.log(getRandomColor())
+                $("span").css('color', getRandomColor())
+
+                $("span").text("Validated...").show().fadeOut('slow', function() {
+                    $(this).show().fadeIn('slow', function(){
+                        recursionLoopCount+=1
+                        console.log("recursion " + recursionLoopCount + " time running!!")
+                        recursiveAnimation()
+                    });
+                })
+            }
+        </script>
+
+        <script>
+            $("form").submit( function() {
+                if ($("input:first").val() == "correct") {
+                    $(".incorrect").removeClass().addClass('correct');
+                    recursiveAnimation()
+
+                    return true;
+                } else {
+                    $("span").text("Not valid!").show().fadeOut(2000)
+                    return false;    
+                }
+            });
+        </script>
+    </body>
+</html>

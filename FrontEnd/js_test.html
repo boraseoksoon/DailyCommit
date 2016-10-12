@@ -1,0 +1,111 @@
+<!-- 
+<html>
+    <head>
+        <script type="text/javascript">
+
+            function addMyEvent(target, eventType,eventHandler, useCapture) {
+                console.log("you see")
+                if (target.addEventListener) { // W3C DOM
+                    target.addEventListener(eventType,eventHandler,useCapture?useCapture:false);
+                } else if (target.attachEvent) {  // IE DOM
+                    var r = target.attachEvent("on"+eventType, eventHandler);
+                }
+            }
+ 
+            function clickHandler(event) {
+                console.log("event : " + event)
+                var nav = document.getElementById('navigation');
+                for(var i = 0; i < nav.childNodes.length; i++) {
+                    var child = nav.childNodes[i];
+                    if(child.nodeType==3)
+                        continue;
+                    child.className = '';
+                }
+                
+                event.target.className = 'selected';
+            }
+
+            addMyEvent(window, 'load', function(e) {
+                console.log("how many time?")
+                var nav = document.getElementById('navigation')
+                for (var i = 0; i < nav.childNodes.length; i++) {
+                    var child = nav.childNodes[i];
+                    if(child.nodeType == 3)
+                        continue;
+                    addMyEvent(child, 'click', clickHandler)
+                }
+            })
+
+        </script>
+        <style type="text/css">
+
+            #navigation li {
+                list-style:none;
+                float:left;
+                padding:5px;
+            }
+            #navigation {
+                cursor:pointer;
+            }
+            #navigation .selected {
+                background-color:red;
+                color:white;
+            }
+        </style>
+    </head>
+    <body>
+        <ul id="navigation">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>javascript</li>
+            <li class="selected">jQuery</li>
+            <li>PHP</li>
+            <li>mysql</li>
+        </ul>
+    </body>
+</html>
+-->
+
+<html>
+    <head>
+        <style type="text/css">
+            #navigation li {
+                list-style: none;
+                float:left;
+                padding:5px;
+            }
+
+            #navigation {
+                cursor:pointer;
+            }
+
+            #navigation .selected {
+                background-color:black;
+                color:red;
+            }
+        </style>
+
+         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script type="text/javascript">
+
+            $('#navigation li').live('click', function() {
+                $('#navigation li').removeClass('selected');
+                $(this).addClass('selected');
+            })
+            
+            $('#navigation li').live('click', function(){
+                $('#navigation li').removeClass('selected');
+                $(this).addClass('selected');
+            })
+
+        </script>
+    </head>
+    <body>
+        <ul id="navigation">
+            <li class="selected">C</li>
+            <li>C++</li>
+            <li>Objective-C</li>
+            <li>Swift</li>
+        </ul>
+    </body>
+</html>

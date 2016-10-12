@@ -1,0 +1,43 @@
+<!-- javascript -->
+<!-- 
+<html>
+     <body>
+         <a id="tutorial" href="http://jquery.com" target="_self">jQuery</a>
+         <script type="text/javascript">
+             var tutorial = document.getElementById('tutorial');
+             tutorial.setAttribute('href', 'http://jquery.org');
+             tutorial.setAttribute('target', '_blank');
+             tutorial.style.color = 'red';
+         </script>
+     </body>
+ </html>
+-->
+
+<!-- jquery -->
+<html>
+	<head>
+	</head>
+    <body>
+        <a id="tutorial1" href="http://jquery.org" target="_blank">jQuery</a>
+        <a id="needToStudyHTML" href="http://www.apple.com" target="_blank">Apple</a>
+
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script type="text/javascript">
+        	$(document).ready(function () {
+        	
+        	});
+
+    		$('#needToStudyHTML, #tutorial1').live('click', function(){
+				alert("Warning Message");
+
+    			jQuery('#tutorial').attr('href', 'http://naver.com').attr('target', '_self').css('color', 'red');
+
+	            var needToStudyHTML = document.getElementById("needToStudyHTML");
+	            needToStudyHTML.setAttribute('href', 'http://microsoft.com')
+	            needToStudyHTML.setAttribute('target', '_self')
+	            needToStudyHTML.style.color = "green";
+    		});
+        </script>
+
+    </body>
+</html>

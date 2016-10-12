@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+			.selected {
+				background-color:red;
+			}
+		</style>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function () {
+	            $('input').live('click', function() {
+		            $this = $(this);
+		            console.log('here1')
+		            $('*').removeClass('selected');
+		            console.log('here2')
+		            
+		            switch($this.attr('value')) {
+		                case 'test1':
+		                	console.log('here3')
+		                	$('#test1').removeClass().addClass('selected');
+		                	break;
+		                case 'test2':
+		                	console.log('here4')
+		                	$('#test2').removeClass().addClass('selected');
+		                	break;
+		             }
+	         	});
+	        });	
+		</script>
+		
+	</head>
+	<body>
+		<h5>hello fuckers!</h5>
+		<input class="btn" type="button" id="test1" value="test1"/>test1 <br />
+        <input class="btn" type="button" id="test2" value="test2"/>test2 <br />
+	</body>
+</html>

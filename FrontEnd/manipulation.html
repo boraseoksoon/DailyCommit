@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            p { background:yellow; }
+            #run_text { background:white; }
+            .blue { color:blue; }
+            .highlight { background:red; }
+        </style>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+    </head>
+    <body>
+        <p> I would like to say: </p>
+        <script>$("p").append("<strong>Hello</strong>");</script>
+
+        <ul id="good_ul"></ul>
+        <script>$('#good_ul').append("<li>do you like</li>")</script>
+        <script>$('#good_ul').append("<li>UNIX?</li>")</script>
+
+        <script>$("p").after("<b>same depth using after.</b>");</script>
+
+        <span>Span Text</span>
+        <strong>What about me?</strong>
+        <span>Another One</span>
+
+         <script>$("span").wrap("<div><div><p><em><b></b></em></p></div></div>");</script>
+
+         <input type="button" value="fuck?"/>
+         <script type="text/javascript">
+             $("input").click( function () {
+                $this = $(this);
+                this.value = "clicked."
+                $("span").remove();
+                $("<br><b>Paragraph.</b> <br>").replaceAll("p"); // check replaceWith() examples.
+            });
+         </script>
+        <p> Hello </p>
+        <p> cruel world </p>
+
+        <p class="blue"> Click to toggle </p>
+        <p class="blue highlight"> highlight </p>
+        
+        <script>
+             $("p").click( function () {
+                 $(this).toggleClass("highlight");
+
+                if($(this).hasClass('blue')) {
+                    alert('yes, it has blue class! ')
+                    $(this).toggleClass('blue')
+                } else {
+                    alert('no it has no blue class!! ')
+                    $(this).toggleClass('blue')
+                }
+             });
+         </script>
+          
+        <input type="text" value="some text"/>
+        <p id="run_text">
+            hey, text me.
+        </p>
+        <script>$("input").keyup( function () {
+                var value = $(this).val();
+                $("#run_text").text(value);
+            }).keyup(); </script>
+    </body>
+</html>

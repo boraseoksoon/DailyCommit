@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <style type="text/css">
+            ul li {
+                list-style: none;
+                padding:10px;
+                float:left;
+            }
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li id="test1">test1</li>
+        </ul>
+        <ul class="foo">
+            <li id="test2">test2</li>
+        </ul>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script type="text/javascript">
+            
+            // I got fucked up here before. ^^
+
+            // the first way to fire jquery.
+            (function($){
+                $(document.body).css( "background-color", "black" );
+            })(jQuery)
+
+            // the second way to fire jquery.
+            // jQuery(document.body.ul).click(function(event) { => it does not work.
+            jQuery('ul').click(function(event){
+                if (jQuery('li', this).hasClass('selected')) {
+                    console.log("it has selected.")
+                    // the third way to fire jquery.
+                    $('li').css('background-color', 'black');
+                    $('li', this).css('background-color', 'red').removeClass();
+                } else {
+                    console.log("it has NOT selected.")
+                    $('li').css('background-color', 'black');
+                    jQuery('li', this).css('background-color', 'red').addClass('selected')                
+                }
+            })
+            
+        </script>
+    </body>
+</html>
