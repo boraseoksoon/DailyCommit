@@ -1,0 +1,38 @@
+#! /bin/usr/python
+#! #-*- coding: utf-8 -*-
+
+'''
+level : lv1.
+link : http://codingdojang.com/scode/504?answer_mode=hide
+
+1~1000에서 각 숫자의 개수 구하라.
+예로 10 ~ 15 까지의 각 숫자의 개수를 구해보자.
+
+10 = 1, 0
+11 = 1, 1
+12 = 1, 2
+13 = 1, 3
+14 = 1, 4
+15 = 1, 5
+
+그러므로 이 경우의 답은 0:1개, 1:7개, 2:1개, 3:1개, 4:1개, 5:1개
+'''
+
+from collections import defaultdict
+import sys
+
+### get arguments ###
+var1 = int(sys.argv[1])
+var1
+
+var2 = int(sys.argv[2])
+var2+=1
+#####################
+
+dictionary = defaultdict(int)
+
+for n in range(var1, var2):
+    for x in str(n):
+        dictionary[x] += 1
+
+print	dictionary
