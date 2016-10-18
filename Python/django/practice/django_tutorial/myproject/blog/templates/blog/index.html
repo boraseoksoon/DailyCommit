@@ -28,9 +28,24 @@
 				<tbody>
 					{% for post in post_list %}
 					<tr>
-						<td>{{ post.title }}</td>
+						<td>
+							<a href="{% url "post_detail" post.pk %}">{{ post.title }} </a><br>
+						</td>
 					</tr>
 					{% endfor %}
+
+<!-- 
+
+<tr>
+  <td><a href="#">Blah Blah</a></td>
+  <td><a href="#">1234567</a></td>
+  <td><a href="#">more text</a></td>
+</tr>
+
+
+-->
+
+
 				</tbody>
 			</table>
 		</div>	
