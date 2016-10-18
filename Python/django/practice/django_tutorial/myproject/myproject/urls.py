@@ -16,9 +16,22 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from blog import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.index, name='index'), 
-    url(r'^new/$', views.post_new, name="post_new"),
+    url(r'^$', views.index, name='index'), # print post lists all.
+    url(r'^new/$', views.post_new, name="post_new"), # add new post
+    # url('r^(?P<pk>\d+)/$', views.post_detail, name="post_detail"), # post contents
+    # fuck..... 'r should be r'..)	
+    url(r'^(?P<pk>\d+)/$', views.post_detail, name="post_detail"), # post contents
+    # url('r^(?P<pk>\d+)/comments/new/$', views.comment_new, name='comments'), # new comments created
+
+   url(r'^(?P<pk>\d+)/comments/new/$', views.comment_new, name='comments'), # new comments created
+
+   url(r'^(?P<post_pk>[0-9]+)/comments/(?P<pk>\d+)/edit/$', views.comment_edit, name='comment_edit')
+
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

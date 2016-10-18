@@ -1,0 +1,27 @@
+<style>
+	img { max-width : 100%; } 
+</style>
+<h1>{{ post.title }} </h1>
+
+{% if post.photo %}
+	<img src="{{ post.photo.url }} "/>
+{% endif %}
+
+<br><br>
+
+{{ post.content | linebreaksbr }}
+
+<h3>Comments</h3>
+<a href="{% url "comments" post.pk %}">add new comment</a>
+<!-- Note that url "name" can mean name argument in url in url.py -->
+
+
+<ui>
+	{% for comment in post.comment_set.all %}
+		<li>
+			{{ comment.message }}
+			<small> by {{ comment.author }}, {{ comment.created.at }}</small>
+			<a href="{% url 'comment_edit' post.pk comment.pk %}">edit</a>
+		</li>
+	{% endfor %}		
+</ul> 
