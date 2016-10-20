@@ -1,5 +1,5 @@
 #include <stdio.h>
- 
+
 unsigned int TOPPING_NONE = (1u << 0);
 unsigned int TOPPING_TWO = (1u << 1);
 unsigned int TOPPING_THREE = (1u << 2);
@@ -16,15 +16,12 @@ int main(int argc, char* argv[], char* envp[]){
 
 	unsigned int empty_pizza = 0;
 	unsigned int full_topping_pizza = (1 << 10) - 1;
-
 	
 	empty_pizza = TOPPING_NONE;
-	
 
 	if (empty_pizza == TOPPING_NONE) {
 		printf("TOPPING_NONE!\n");
 	}
-
 
 	empty_pizza |= TOPPING_NINE;
 
