@@ -18,6 +18,8 @@ Including another URLconf
 
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.conf.urls.static import static
+from django.conf import settings
 import blog.views
 
 urlpatterns = [
@@ -27,5 +29,9 @@ urlpatterns = [
     url(r'^new/', blog.views.post_new),
 
     url(r'^(?P<pk>\d+)/$', blog.views.post_detail, name='blog_post_detail'),
-    url(r'^(?P<pk>\d+)/comments/new/$', blog.views.comment_new, name='blog_comment_new')
+    url(r'^(?P<pk>\d+)/comments/new/$', blog.views.comment_new, name='blog_comment_new'),
+    url(r'^(?P<post_pk>[0-9]+)/comments/(?P<pk>\d+)/edit/$', blog.views.comment_edit, name='blog_comment_edit')
 ]
+
+# in order to solve image link 404 not found error.
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

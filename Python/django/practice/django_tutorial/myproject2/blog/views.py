@@ -36,3 +36,19 @@ def comment_new(request, pk):
 		'form':form
 	})
 
+
+def comment_edit(request, post_pk, pk):
+	comment = Comment.objects.get(pk=pk)
+
+	if request.method == 'POST':
+		form = CommentForm(request.POST, instance=comment)
+		if form.is_valid():
+			comment = form.save(commit=False)
+			comment.post = Post.objects.get(pk=post_pk)
+			comment.save()
+			return redirect('blog_post_detail', post_pk)
+	else:
+		form = CommentForm(instance=comment)
+	return render(request, 'blog/post_form.html', {'form': form,})
+
+

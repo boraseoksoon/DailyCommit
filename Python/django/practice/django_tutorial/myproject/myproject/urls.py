@@ -34,4 +34,5 @@ urlpatterns = [
 
 ]
 
+# in order to solve image link 404 not found error.
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

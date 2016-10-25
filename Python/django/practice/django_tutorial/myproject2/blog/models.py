@@ -25,3 +25,12 @@ class Comment(models.Model):
 	def __unicode__(self):
 		return self.title
 
+
+class TestModel(models.Model):
+    post = models.ForeignKey(Post)
+    test = models.CharField(max_length=10)
+
+    def __unicode__(self):
+        return self.title
+
+
