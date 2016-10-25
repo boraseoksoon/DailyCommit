@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+	<title>hello django!</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="//code.jquery.com/jquery-1.11.0.min.js">
+
+		$("#helloworld").animate({
+			width: "300px",
+			opacity: 0.4,
+			marginLeft: "50px",
+			fontSize: "30px",
+			borderWidth: "10px"
+        }, 3000);
+
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<h1 class="helloworld">Hello Django!</h1>
+
+			<table class="table table-striped">
+				<tbody>
+					{% for post in post_list %}
+					<tr>
+						<td>
+                            {{ post.title }}
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+		$(".helloworld").animate({
+			width: "300px",
+			opacity: 0.4,
+			marginLeft: "50px",
+			fontSize: "30px",
+			borderWidth: "10px"
+        }, 3000);
+</script>
+
+</body>

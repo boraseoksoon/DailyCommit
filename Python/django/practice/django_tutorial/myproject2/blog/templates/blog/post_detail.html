@@ -1,0 +1,14 @@
+{{ post.title }}
+
+{{ post.content | linebreaks }}
+
+<h3>Comments</h3>
+
+<ui>
+	{% for comment in post.comment_set.all %}
+		<li>
+			{{ comment.message }}
+			<small> by {{ comment.author }}, {{ comment.created.at }}</small>
+		</li>
+	{% endfor %}
+</ul>
