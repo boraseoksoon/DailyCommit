@@ -3,36 +3,36 @@
 #include <stdlib.h> 
 
 int main() 
-{
-	
+{	
 	char* hello = "hello";
 
+	// segmentation fault : 11
+	/*
+	char* a  = "hello_a";
+	char* b;
+	*/
+
+	// it just works.
 	char a[15] = "hello_a";
-	char b[15]  = NULL; 
+	char b[15];
 
 	for(int i=0; i<strlen(hello); i++)
 	{
 		printf("%c\n", hello[i]);
 	}
 
-	/*
-	for(int i=0; hello[i] != '\0'; i++)
+	int index = 0;
+
+	while (b[index++] = a[index])
 	{
-		printf("%c\n", hello[i]);
-		strncpy(assigned_str[i], hello[i], sizeof(char));
-		// assigned_str[i] = hello[i];
-		// strncpy(assigned_str[i], hello[i], sizeof(char));
-		// *assigned_str = *hello[i];
-	} 
-	*/
-
-
-	while (*a != '\0') {
-    	// copy contents of a into b and increment
-   		 *b++ = *a++;
+		b[index+1] = '\0';
+		printf("b[%d] : %c\n", index-1, b[index-1]);
+		printf("a[%d] : %c\n", index-1, a[index-1]);
+	
 	}
+
 	// assign null to the end of arrayB
-	*b = '\0';
+	b[index] = '\0';
 
 	printf("copied b : %s\n", b);
 

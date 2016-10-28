@@ -1,5 +1,4 @@
-#include <stdio.h> 
-#include <string.h>
+#include "strlen.h"
 
 size_t string_length (char *str) {
     size_t len = 0;
@@ -10,6 +9,7 @@ size_t string_length (char *str) {
     return len;
 }
 
+/*
 int main(int argc, char* argv[], char* envp[])
 {	
 	printf("argc : %d\n", argc);
@@ -33,3 +33,4 @@ int main(int argc, char* argv[], char* envp[])
 
 	return 0;
 }
+*/
