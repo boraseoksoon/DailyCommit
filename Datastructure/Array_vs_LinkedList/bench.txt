@@ -1,2 +1,0 @@
-LinkedList iteration with 30000000 number of integer elapsed time is 352
-Array iteration with 30000000 number of integer elapsed time is 2
