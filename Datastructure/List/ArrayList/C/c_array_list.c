@@ -1,26 +1,12 @@
 //
-//  c_array_list.c 
-//  
+//  c_array_list.c
+//  DynamicArrayList
 //
-//  Created by Seoksoon Jang on 2016. 11. 6..
+//  Created by Seoksoon Jang on 2016. 11. 7..
 //  Copyright © 2016년 Seoksoon Jang. All rights reserved.
 //
 
-/* 
-    This is the C "array-list" implementation like Python list does as much as possible... 
-    I wanted to make func name also similar or same but it was already possessed in C standard func name, so.. I just did it like below.
-*/
-
-#ifndef C_ARRAY_LIST
-#define C_ARRAY_LIST
-
-#include <stdio.h>
-#include <stdbool.h>
-
-typedef struct DynamicArrList{
-    void* listPointer;
-    __int64_t currentIndex;
-} dynamicArrList;
+#include "c_array_list.h"
 
 void printAll(dynamicArrList* ptr) {
     int* temp_ptr = (int*)ptr->listPointer;
@@ -28,7 +14,7 @@ void printAll(dynamicArrList* ptr) {
     printf("printAll given list : ");
     printf("{ ");
     for (int i=0; i <= ptr->currentIndex; i++) {
-
+        
         if(i == ptr->currentIndex) {
             printf("%d ", temp_ptr[i]);
         } else {
@@ -51,7 +37,7 @@ dynamicArrList* initArrayList(dynamicArrList* ptr, __int64_t listToCreate[], __i
     ptr = (dynamicArrList*) malloc(sizeof(dynamicArrList));
     ptr->currentIndex = 0;
     ptr->listPointer = NULL;
-
+    
     ptr->listPointer = createArrayList(fullSizeOfBuffer);
     ptr->currentIndex = fullSizeOfBuffer / sizeof(__int64_t) - 1;
     
@@ -132,7 +118,7 @@ dynamicArrList* insertValueAt(dynamicArrList* ptr, __int64_t indexToInsert, __in
         // backup all original datas to assign to new buffer again.
         ptr = createOneMoreBuffer(ptr);
         indexToInsert = ptr->currentIndex;
-
+        
     } else {
         // printf("NOT isFull!\n");
         
@@ -162,16 +148,16 @@ dynamicArrList* insertValueAt(dynamicArrList* ptr, __int64_t indexToInsert, __in
         // printAll(ptr);
         // in the end, insert target to index destionation
     }
-
+    
     // insert target to index destionation
     temp_ptr[indexToInsert] = valueToInsert;
-
+    
     return ptr;
 }
 
 // get
 int getValueAt(dynamicArrList* ptr, int indexToGet) {
-
+    
     int* temp_ptr = (int*)ptr->listPointer;
     
     if (indexToGet > ptr->currentIndex) {
@@ -242,18 +228,18 @@ dynamicArrList* removeWithValue(dynamicArrList* ptr, __int64_t valueToDelete) {
             }
             
             /*
-            if (ptr->currentIndex != 0) {
-                ptr->currentIndex-=1;
-            }
-            */
+             if (ptr->currentIndex != 0) {
+             ptr->currentIndex-=1;
+             }
+             */
             ptr->currentIndex-=1;
-
+            
         } else {
             printf("cannot find out %zu to delete\n", valueToDelete);
         }
         
         return ptr;
-
+        
     } else {
         perror("deleteValue failed, already empty array list.\n");
         
@@ -261,96 +247,3 @@ dynamicArrList* removeWithValue(dynamicArrList* ptr, __int64_t valueToDelete) {
     
     return ptr;
 }
-
-int main(int argc, const char * argv[]) {
-    
-    dynamicArrList* p;
-    __int64_t arr[] = {1,2,3,4,5};
-    p = initArrayList(p, arr, sizeof(arr));
-    
-    printf("ptr->currentIndex : %d\n", p->currentIndex);
-    insertValueAt(p, 3, 4);
-    printf("ptr->currentIndex : %d\n", p->currentIndex);
-    removeWithValue(p, 4);
-    printAll(p);
-    printf("ptr->currentIndex : %d\n", p->currentIndex);
-    removeWithValue(p, 5);
-    printAll(p);
-    removeWithValue(p, 4);
-    printAll(p);
-    removeWithValue(p, 1);
-    printAll(p);
-    removeWithValue(p, 2);
-    printAll(p);
-    printf("ptr->currentIndex : %d\n", p->currentIndex);
-    removeWithValue(p, 3);
-    printAll(p);
-    insertValueAt(p, 100, 1000);
-    printAll(p);
-    insertValueAt(p, 1, 1);
-    printAll(p);
-    insertValueAt(p, 1, 11);
-    printAll(p);
-    
-    removeWithValue(p, 1000);
-    printAll(p);
-    removeWithValue(p, 11);
-    printAll(p);
-    removeWithValue(p, 222);
-    removeWithValue(p, 1);
-    printAll(p);
-    printAll(p);
-    
-    insertValueAt(p, 1, 111);
-    printAll(p);
-    
-    insertValueAt(p, 0, 0);
-    printAll(p);
-    
-    updateValueAt(p, 0, 999);
-    printAll(p);
-    
-    updateValueAt(p, 1, 888);
-    printAll(p);
-    
-    printf("getIndex[0] : %d\n", getValueAt(p, 0));
-    printf("getIndex[1] : %d\n", getValueAt(p, 1));
-    
-    removeWithValue(p, 999);
-    removeWithValue(p, 888);
-
-    insertValueAt(p, 100, 1000);
-    
-    printf("getIndex[0] : %d\n", getValueAt(p, 0));
-    
-    printAll(p);
-    
-    
-    
-    /*
-    removeWithValue(p, 5);
-    printAll(p);
-
-    removeWithValue(p, 4);
-    printAll(p);
-    removeWithValue(p, 1);
-    printAll(p);
-    removeWithValue(p, 3);
-    printAll(p);
-    removeWithValue(p, 22);
-    printAll(p);
-    removeWithValue(p, 2);
-    printAll(p);
-    
-    insertValueAt(p, 100, 1000);
-    printAll(p);
-    */
-
-    // printAll(p);
-    // removeWithValue(p, 100);
-    
-    
-    return 0;
-}
-
-#endif
