@@ -100,12 +100,12 @@ public class BinarySearchTree {
         System.out.println();
     }
     
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 		
-		BinarySearchTree binarySearchTree = new BinarySearchTree();
+	BinarySearchTree binarySearchTree = new BinarySearchTree();
         
-		binarySearchTree.insertNodeOnBSTWith('V');
-		binarySearchTree.insertNodeOnBSTWith('C');
+	binarySearchTree.insertNodeOnBSTWith('V');
+	binarySearchTree.insertNodeOnBSTWith('C');
         binarySearchTree.insertNodeOnBSTWith('G');
         binarySearchTree.insertNodeOnBSTWith('H');
         binarySearchTree.insertNodeOnBSTWith('D');
@@ -145,5 +145,5 @@ public class BinarySearchTree {
         } else {
             System.out.println("search failure");
         }
-	}
+    }
 }
