@@ -14,6 +14,38 @@
 
 int main(int argc, const char * argv[]) {
     
+    printf("DLL begins ----> \n");
+    DLLNode* dll_leadNode = NULL;
+    
+    dll_addNodeFirst(&dll_leadNode, dll_createDLLNode(1));
+    
+    dll_addNodeLast(&dll_leadNode, dll_createDLLNode(6));
+    dll_addNodeLast(&dll_leadNode, dll_createDLLNode(7));
+    dll_addNodeLast(&dll_leadNode, dll_createDLLNode(8));
+    dll_addNodeLast(&dll_leadNode, dll_createDLLNode(9));
+    
+    dll_addNodeAfter(dll_getNodeAt(dll_leadNode, 0), dll_createDLLNode(1000));
+    // dll_addNodeAfter(dll_getNodeAt(dll_leadNode, 2), dll_createDLLNode(66));
+
+    dll_printAllDLL(dll_leadNode);
+    
+    dll_traverse(dll_leadNode);
+    DLLNode* dll_tailNode = dll_getTail(dll_leadNode);
+    dll_reverseTraverse(dll_tailNode);
+    
+    DLLNode* dll_node = dll_getNodeAt(dll_leadNode, 0);
+    // caution : if head changes, it assigns given pointer the changed head.
+    dll_addNodeBefore(&dll_node, dll_createDLLNode(999));
+    dll_traverse(dll_node);
+    DLLNode* dll_node2 = dll_getNodeAt(dll_node, 1);
+    dll_addNodeBefore(&dll_node2, dll_createDLLNode(888));
+    dll_traverse(dll_node);
+
+    printf("all node count of dll : %d\n", dll_getAllNodeCount(dll_node));
+    
+    printf("DLL ends ----> \n");
+    printf("\n\n");
+    
     printf("CLL begins ----> \n");
     CLLNode* cll_leadNode = NULL;
     cll_addNodeFirst(&cll_leadNode, cll_createCLLNode(1));

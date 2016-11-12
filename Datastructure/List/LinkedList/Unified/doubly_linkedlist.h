@@ -23,9 +23,12 @@
  *          2-7. Node searchNode(headNode, searchValue) :
                     if you give searchValue with headPointer, it'll return the Node you would like to find.
  *          2-8. Void printAllNode(headNode) : traverse and print all node in the list.
+ *          2-9. Node getTail(headNode) : get Tail node for practically use.
+ *          2-10. Void addNodeBefore(headNode) : append node before some specific node index.
+ *          2-11. Void traverseList(headNode) : traverse and print all node in the list.
+ *          2-12. Void reverseTraverseList(headNode) : reverse traverse and print all node in the list.
  */
 
-/*
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -36,13 +39,33 @@ typedef struct doublyLinkedListNode {
     struct doublyLinkedListNode* prev;
 } DLLNode;
 
-DLLNode* createDLLNode(int _data);
-DLLNode* getNodeAt(DLLNode* leadNode, int nodeIndex);
-int getAllNodeCount(DLLNode* leadNode);
-void removeNode(DLLNode** leadNode, DLLNode* removeNode);
-void addNode(DLLNode** leadNode, DLLNode* newNode);
-void addNodeAfter(DLLNode* currentNode, DLLNode* newNode);
-int searchNode(DLLNode* leadNode, int data);
-void printAllSLL(DLLNode* leadNode);
-*/
+void dll_deleteNode(DLLNode* node);
+
+DLLNode* dll_createDLLNode(int _data);
+
+DLLNode* dll_getNodeAt(DLLNode* leadNode, int nodeIndex);
+
+int dll_getAllNodeCount(DLLNode* leadNode);
+
+int dll_searchNode(DLLNode* leadNode, int data);
+
+void dll_removeNode(DLLNode** leadNode, DLLNode* removeNode);
+
+void dll_addNodeFirst(DLLNode** leadNode, DLLNode* newNode);
+
+void dll_addNodeLast(DLLNode** leadNode, DLLNode* newNode);
+
+void dll_addNodeAfter(DLLNode* currentNode, DLLNode* newNode);
+
+void dll_printAllDLL(DLLNode* leadNode);
+
+// additional functions in doubly linked-list.
+DLLNode* dll_getTail(DLLNode* leadNode);
+
+void dll_traverse(DLLNode* leadNode);       // works same as printAllDLL.
+
+void dll_reverseTraverse(DLLNode* leadNode);
+
+void dll_addNodeBefore(DLLNode** currentNode, DLLNode* newNode);
+
 #endif /* doubly_linkedlist_h */
