@@ -14,6 +14,89 @@
 
 int main(int argc, const char * argv[]) {
     
+    printf("DCLL begins ----> \n");
+    DCLLNode* dcll_leadNode = NULL;
+    dcll_addNodeFirst(&dcll_leadNode, dcll_createDCLLNode(5));
+    dcll_addNodeFirst(&dcll_leadNode, dcll_createDCLLNode(4));
+    dcll_addNodeFirst(&dcll_leadNode, dcll_createDCLLNode(3));
+    dcll_addNodeFirst(&dcll_leadNode, dcll_createDCLLNode(2));
+    dcll_addNodeFirst(&dcll_leadNode, dcll_createDCLLNode(1));
+    dcll_addNodeLast(&dcll_leadNode, dcll_createDCLLNode(6));
+    dcll_addNodeLast(&dcll_leadNode, dcll_createDCLLNode(7));
+    dcll_addNodeLast(&dcll_leadNode, dcll_createDCLLNode(8));
+    
+    
+    dcll_addNodeAfter(dcll_getNodeAt(dcll_leadNode, 6), dcll_createDCLLNode(100));
+    dcll_addNodeAfter(dcll_getNodeAt(dcll_leadNode, 0), dcll_createDCLLNode(111));
+    dcll_addNodeAfter(dcll_getNodeAt(dcll_leadNode, 9), dcll_createDCLLNode(999));
+    
+    
+    
+    
+    /*
+    DCLLNode* dcll_node0 = dcll_getNodeAt(dcll_leadNode, 0);
+    dcll_addNodeBefore(&dcll_node0, dcll_createDCLLNode(3000));
+    
+    DCLLNode* dcll_node2 = dcll_getNodeAt(dcll_leadNode, 2);
+    dcll_addNodeBefore(&dcll_node2, dcll_createDCLLNode(222));
+    
+    DCLLNode* dcll_node12 = dcll_getNodeAt(dcll_leadNode, 12);
+    dcll_addNodeBefore(&dcll_node12, dcll_createDCLLNode(1212));
+    */
+    
+    /*
+    DCLLNode* dcll_node0 = dcll_getNodeAt(dcll_leadNode, 0);
+    dcll_addNodeBefore(dcll_leadNode, &dcll_node0, dcll_createDCLLNode(3000));
+    DCLLNode* dcll_node11 = dcll_getNodeAt(dcll_leadNode, 11);
+    dcll_addNodeBefore(dcll_leadNode, &dcll_node11, dcll_createDCLLNode(999));
+    */
+    
+    dcll_traverse(dcll_leadNode);
+    
+    
+    printf("removed  0\n");
+    dcll_removeNode(&dcll_leadNode, dcll_getNodeAt(dcll_leadNode, 0));
+    dcll_traverse(dcll_leadNode);
+    dcll_reverseTraverse(dcll_leadNode);
+    
+    printf("removed  0\n");
+    dcll_removeNode(&dcll_leadNode, dcll_getNodeAt(dcll_leadNode, 0));
+    dcll_traverse(dcll_leadNode);
+    dcll_reverseTraverse(dcll_leadNode);
+    
+    printf("removed  3\n");
+    dcll_removeNode(&dcll_leadNode, dcll_getNodeAt(dcll_leadNode, 3));
+    dcll_traverse(dcll_leadNode);
+    dcll_reverseTraverse(dcll_leadNode);
+    
+    printf("removed 7\n");
+    dcll_removeNode(&dcll_leadNode, dcll_getNodeAt(dcll_leadNode, 7));
+    dcll_traverse(dcll_leadNode);
+    dcll_reverseTraverse(dcll_leadNode);
+    
+    /*
+    printf("removed  0\n");
+    dcll_removeNode(&dcll_leadNode, dcll_getNodeAt(dcll_leadNode, 0));
+    dcll_traverse(dcll_leadNode);
+    dcll_reverseTraverse(dcll_leadNode);
+    
+    printf("removed  0\n");
+    dcll_removeNode(&dcll_leadNode, dcll_getNodeAt(dcll_leadNode, 0));
+    dcll_traverse(dcll_leadNode);
+    dcll_reverseTraverse(dcll_leadNode);
+    
+    printf("removed  3\n");
+    dcll_removeNode(&dcll_leadNode, dcll_getNodeAt(dcll_leadNode, 3));
+    dcll_reverseTraverse(dcll_leadNode);
+    
+    printf("removed 6\n");
+    dcll_removeNode(&dcll_leadNode, dcll_getNodeAt(dcll_leadNode, 6));
+    dcll_traverse(dcll_leadNode);
+    // dcll_reverseTraverse(dcll_leadNode);
+     */
+
+    printf("DCLL ends ----> \n");
+    
     printf("DLL begins ----> \n");
     DLLNode* dll_leadNode = NULL;
     
@@ -41,7 +124,7 @@ int main(int argc, const char * argv[]) {
     dll_addNodeBefore(&dll_node2, dll_createDLLNode(888));
     dll_traverse(dll_node);
 
-    printf("all node count of dll : %d\n", dll_getAllNodeCount(dll_node));
+    printf("all node count of dll : %d\n", dll_getAllNodeCount(dll_leadNode));
     
     printf("DLL ends ----> \n");
     printf("\n\n");
@@ -53,11 +136,8 @@ int main(int argc, const char * argv[]) {
     cll_addNodeLast(&cll_leadNode, cll_createCLLNode(2));
     cll_addNodeLast(&cll_leadNode, cll_createCLLNode(3));
     cll_addNodeLast(&cll_leadNode, cll_createCLLNode(4));
-    cll_addNodeFirst(&cll_leadNode, cll_createCLLNode(9));
-    cll_addNodeAfter(cll_getNodeAt(cll_leadNode, 0), cll_createCLLNode(1000));
-    cll_addNodeAfter(cll_getNodeAt(cll_leadNode, 1), cll_createCLLNode(2000));
-    cll_addNodeAfter(cll_getNodeAt(cll_leadNode, 3), cll_createCLLNode(3000));
-    cll_addNodeLast(&cll_leadNode,  cll_createCLLNode(8000));
+    // cll_addNodeAfter(cll_getNodeAt(cll_leadNode, 1), cll_createCLLNode(3000));
+    // cll_addNodeLast(&cll_leadNode,  cll_createCLLNode(8000));
     cll_printAllCLL(cll_leadNode);
     
     printf("CLL ends ----> \n");
@@ -78,7 +158,6 @@ int main(int argc, const char * argv[]) {
     printAllSLL(leadNode);
     addNodeFirst(&leadNode, createSLLNode(0));
     printAllSLL(leadNode);
-    
     
     addNodeAfter(getNodeAt(leadNode, 0), createSLLNode(1000));
     printAllSLL(leadNode);
