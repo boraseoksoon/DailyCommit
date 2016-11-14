@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
- 
+
+// Max Heap Implementation. 
 public class MaxHeap<T extends Comparable<T>> {
      
     private ArrayList<T> items;
@@ -30,12 +31,7 @@ public class MaxHeap<T extends Comparable<T>> {
             }
         }
     }
-     
-    public void insert(T item) {
-        items.add(item);
-        moveUp();
-    }
-     
+         
     private void moveDown() {
 
         int k = 0;
@@ -65,7 +61,12 @@ public class MaxHeap<T extends Comparable<T>> {
             }
         }
     }
-     
+    
+    public void insert(T item) {
+        items.add(item);
+        moveUp();
+    }
+ 
     public T delete() throws NoSuchElementException {
 
         if (items.size() == 0) {

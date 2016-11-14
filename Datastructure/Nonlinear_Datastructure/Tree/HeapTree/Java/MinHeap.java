@@ -31,23 +31,21 @@ public class MinHeap<T extends Comparable<T>> {
             }
         }
     }
-     
-    public void insert(T item) {
-        items.add(item);
-        moveUp();
-    }
-     
+       
     private void moveDown() {
 
         int k = 0;
-        int l = 2*k+1;
+        int nodeToMoveUp = 2 * k + 1;
 
-        while (l < items.size()) {
-            int max = l, r = l+1;
+        while (nodeToMoveUp < items.size()) {
+            
+            // find child two binary nodes.
+            int max = nodeToMoveUp;
+            int r = nodeToMoveUp + 1;
 
-	    // there is a right child.
+	    // if there is a right child...
             if (r < items.size()) {
-                if (items.get(r).compareTo(items.get(l)) < 0) {
+                if (items.get(r).compareTo(items.get(nodeToMoveUp)) < 0) {
                     max++;
                 }
             }
@@ -58,17 +56,24 @@ public class MinHeap<T extends Comparable<T>> {
                     items.set(k, items.get(max));
                     items.set(max, temp);
                     k = max;
-                    l = 2*k+1;
+                    nodeToMoveUp = 2 * k + 1;
             } else {
                 break;
             }
         }
     }
-     
+
+    public void insert(T item) {
+        items.add(item);
+        moveUp();
+    }
+   
     public T delete() throws NoSuchElementException {
+
         if (items.size() == 0) {
             throw new NoSuchElementException();
         }
+
         if (items.size() == 1) {
             return items.remove(0);
         }
@@ -85,8 +90,7 @@ public class MinHeap<T extends Comparable<T>> {
     }
      
     public boolean isEmpty() {
-        return items.isEmpty();
-         
+        return items.isEmpty();         
     }
      
     public String toString() {

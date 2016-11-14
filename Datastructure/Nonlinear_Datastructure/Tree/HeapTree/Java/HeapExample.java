@@ -4,18 +4,19 @@ public class HeapExample {
  
     public static void main(String[] args) {
 
-        MinHeap<Integer> minHeap = new MinHeap<Integer>();
-
-	System.out.println("******* Min Heap begins **********");
         Scanner sc = new Scanner(System.in);
-        System.out.print("Input next number.. 'exit' to stop: ");  
+	System.out.println("******* Min Heap begins **********");
+        System.out.print(">> Input next number.. 'exit' to stop: ");  
 	String userInput = sc.next();
+
+	// Min Heap Tree practice.
+        MinHeap<Integer> minHeap = new MinHeap<Integer>();
 
         while (!userInput.equals("exit")) {
 
             minHeap.insert(Integer.parseInt(userInput));
             System.out.println(minHeap);
-            System.out.print("Input next number. 'exit' to stop: ");
+            System.out.print(">> Input next number. input 'exit' to exit : ");
             userInput = sc.next();
 
         }
@@ -24,19 +25,19 @@ public class HeapExample {
             int max = minHeap.delete();
             System.out.println(max + " " + minHeap);
         }
-    
-	MaxHeap<Integer> maxHeap = new MaxHeap<Integer>();
-
-
+   
+	// Max Heap Tree practice. 
 	System.out.println("******* Max Heap begins **********");
-        System.out.print("Input next number.. 'exit' to stop: ");  
+        System.out.print(">> Input next number.. 'exit' to stop: ");  
 	userInput = sc.next();
+
+	MaxHeap<Integer> maxHeap = new MaxHeap<Integer>();
 
         while (!userInput.equals("exit")) {
 
             maxHeap.insert(Integer.parseInt(userInput));
             System.out.println(maxHeap);
-            System.out.print("Input next number. 'exit' to stop: ");
+            System.out.print(">> Input next number. input 'exit' to exit : ");
             userInput = sc.next();
 
         }
