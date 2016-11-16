@@ -57,8 +57,8 @@ typedef struct StackNode {
 }stackNode;
 
 typedef struct Stack {
-    stackNode* arr_stack[STACK_MAX_SIZE];
     stack_int stack_top;
+    stackNode* arr_stack[STACK_MAX_SIZE];
 }stack;
 
 #endif

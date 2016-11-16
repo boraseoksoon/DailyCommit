@@ -9,6 +9,7 @@
 #include "stack.h"
 
 /* declaration */
+
 stackNode* createStackNode(stack_data* setData);
 stack* createStack(stackNode* newStackNode);
 stack_data* pop(stack* stack);
@@ -66,20 +67,16 @@ stack* push(stack* stack, stackNode* newStackNode) {
     
     // if stack is empty
     if (stack->count == 0) {
-        
         stack->top = newStackNode;
         stack->top->next = NULL;
         stack->count++;
-        
     }
     
     // Otherwise, stack is not empty
     else if (stack->count != 0) {
-        
         newStackNode->next = stack->top;
         stack->top = newStackNode;
         stack->count++;
-        
     }
     
     return stack;
@@ -106,7 +103,6 @@ stack_data* pop(stack* stack) {
 #ifdef __LIST__STACK
     
     // list implementation
-    stack_data* stackData = NULL;
     
     // if stack is empty,
     if (stack->count == 0) {
@@ -114,50 +110,41 @@ stack_data* pop(stack* stack) {
         exit(1);
     }
     
-    // Otherwise, stack is not empty,
-    else if (stack->count != 0) {
+    // Otherwise, stack is not empty => Man is One way mode.
+    else {
+
+        stack_data* stackDataToPop = stack->top->stack_data;
         
-        // copy data to get ready to return before remove.
-        stackData = (stack_data*)malloc(sizeof(stack_data) + 1);
-        strcpy(stackData, stack->top->stack_data);
-        
-        // pointer change, remove top node and setting-up again.
-        stackNode* topNodeToRemove = stack->top;
         stack->top = stack->top->next;
-        deleteStackNode(topNodeToRemove);
         stack->count--;
+        
+        return stackDataToPop;
     }
-    
-    return stackData;
 
 #elif __ARRAY__STACK
     
     // array implementation
-    
-    // stack_data* stackData = NULL;
-    
+
+    // if stack is not empty => => Man is One way mode.
     if (stack->stack_top > 0) {
-        // copy data to get ready to return before remove.
-        /*
-        stackData = (stack_data*)malloc(strlen(stack->arr_stack[stack->stack_top]->stack_data) + 1);
-        strcpy(stackData, stack->arr_stack[stack->stack_top]->stack_data);
-        deleteStackNode(stack->arr_stack[stack->stack_top--]);
-        */
+        return stack->arr_stack[stack->stack_top--]->stack_data;
     }
     // Otherwise,
     else {
         perror("there is no node to pop in the stack!\n");
+        exit(1);
     }
-    
-    // return stackData;
-    return stack->arr_stack[stack->stack_top--]->stack_data;
+
 #endif
+    
+    return NULL;
 }
 
 void deleteStack(stack** stack) {
     
 #ifdef __LIST__STACK
     // list implementation
+    
     stackNode* stackTop = (*stack)->top;
     
     while (stackTop != NULL) {
@@ -170,10 +157,18 @@ void deleteStack(stack** stack) {
             (*stack) = NULL;
         }
     }
-
-#elif __ARRAY__STACK
-    // array implementation
     
+#elif __ARRAY__STACK
+    
+    // array implementation
+    for (stack_int i = (*stack)->stack_top; i >= 0; i--) {
+        deleteStackNode((*stack)->arr_stack[i]);
+        
+        if (i == 0) {
+            (*stack) = NULL;
+        }
+    }
+
 #endif
     
     printf("completely deleted the stack.\n");
@@ -182,7 +177,6 @@ void deleteStack(stack** stack) {
 
 void deleteStackNode(stackNode* deleteStackNode) {
     
-    // list implementation
     if (deleteStackNode != NULL) {
         free(deleteStackNode->stack_data);
         free(deleteStackNode);
