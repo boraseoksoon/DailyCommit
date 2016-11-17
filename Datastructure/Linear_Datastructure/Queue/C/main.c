@@ -63,24 +63,65 @@ int main(int argc, char* argv[], char** envp) {
     
     arrayQueue arr_queue;
     initArrayQueue(&arr_queue);
-    
+
+    printf("array queue - enqueing...\n");
     for (__int64_t i = 0; i < ARRAY_QUEUE_MAX_SIZE; i++) {
         arr_enqueue(&arr_queue, i);
     }
+    printf("array queue enqueue compelted.\n");
+    printArrayQueueAll(arr_queue);
     
+    /*
     if (isQueueFull(arr_queue)) {
         printf("true!\n");
     } else {
         printf("false!\n");
     }
+    */
     
     for (__int64_t i = arr_queue.rear; i > ARRAY_QUEUE_INITIALIZE_INDEX + 3; i--) {
-        arr_dequeue(&arr_queue);
+        printf("dequeue from arrayQueue : %lld\n", arr_dequeue(&arr_queue));
     }
     
+    printf("dequeue from arrayQueue : %lld\n", arr_dequeue(&arr_queue));
+    printArrayQueueAll(arr_queue);
+    printf("dequeue from arrayQueue : %lld\n", arr_dequeue(&arr_queue));
+    printArrayQueueAll(arr_queue);
+    printf("dequeue from arrayQueue : %lld\n", arr_dequeue(&arr_queue));
     printArrayQueueAll(arr_queue);
     
+    printf("from here!!!\n");
+    
+    arr_enqueue(&arr_queue, 100);
+    printArrayQueueAll(arr_queue);
+    arr_enqueue(&arr_queue, 200);
+    printArrayQueueAll(arr_queue);
+    arr_enqueue(&arr_queue, 300);
+    printArrayQueueAll(arr_queue);
+    arr_enqueue(&arr_queue, 400);
+    printArrayQueueAll(arr_queue);
+    arr_enqueue(&arr_queue, 500);
+    printArrayQueueAll(arr_queue);
+    arr_enqueue(&arr_queue, 600);
+    printArrayQueueAll(arr_queue);
+    arr_enqueue(&arr_queue, 700);
+    printArrayQueueAll(arr_queue);
+    arr_enqueue(&arr_queue, 800);
+    printArrayQueueAll(arr_queue);
+    
+    for (__int64_t i = arr_queue.rear; i > ARRAY_QUEUE_INITIALIZE_INDEX; i--) {
+        printf("dequeue from arrayQueue : %lld\n", arr_dequeue(&arr_queue));
+    }
+    
+    printf("dequeue from arrayQueue : %lld\n", arr_dequeue(&arr_queue));
+    
     printf("****** QUEUE implemented BY ARRAY Ends ------> \n");
+    
+    arr_enqueue(&arr_queue, 1000);
+    printArrayQueueAll(arr_queue);
+    arr_enqueue(&arr_queue, 2000);
+    printArrayQueueAll(arr_queue);
+    
 
     return 1;
 }

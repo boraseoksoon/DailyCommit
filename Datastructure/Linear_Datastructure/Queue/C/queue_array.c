@@ -32,18 +32,24 @@ bool isQueueEmpty(arrayQueue queue) {
     return false;
 }
 
-
 void arr_enqueue(arrayQueue* queue, __int64_t data) {
     
     // if queue is full.
     if (isQueueFull(*queue)) {
-        perror("array queue is now full.\n");
-        return ;
+        
+        if ((queue->rear - queue->front)) {
+            perror("array queue is now full.\n");
+            return ;
+        }
+        
+        // in order to use empty buffer array using this array queue
+        // when rear and front keep increasing and are same in the end of the array buffer.
+        memcpy (&queue[0], &queue[queue->front], sizeof(queue->arrayIndex[0]));
+        queue->rear = ARRAY_QUEUE_INITIALIZE_INDEX;
+        queue->front = ARRAY_QUEUE_INITIALIZE_INDEX;
     }
-    // otherwise,
-    else {
-        queue->arrayIndex[++(queue)->rear] = data;
-    }
+    
+    queue->arrayIndex[++(queue)->rear] = data;
 }
 
 __int64_t arr_dequeue(arrayQueue* queue) {
@@ -61,8 +67,15 @@ void printArrayQueueAll(arrayQueue queue) {
     
     printf("** ArrayQueue : [ ");
     
-    for (__int64_t i = queue.front + 1; i <= queue.rear; i++) {
-        printf("%lld ", queue.arrayIndex[i]);
+    if (isQueueEmpty(queue)) {
+        printf("Your Queue is now empty! ");
     }
+    
+    else {
+        for (__int64_t i = queue.front + 1; i <= queue.rear; i++) {
+            printf("%lld ", queue.arrayIndex[i]);
+        }
+    }
+    
     printf("]\n");
 }
