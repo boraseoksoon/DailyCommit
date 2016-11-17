@@ -48,10 +48,11 @@ int64_t circular_dequeue(circular_queue* queue) {
         perror("there is no node to dequeue. circular queue is currently empty status.\n");
         return (int64_t)NULL;
     }
-    
-    queue->front += 1;
-    queue->front = queue->front % CIRCULAR_QUEUE_SIZE;
-    return queue->arrayIndex[queue->front];
+    else {
+        queue->front += 1;
+        queue->front = queue->front % CIRCULAR_QUEUE_SIZE;
+        return queue->arrayIndex[queue->front];
+    }
 }
 
 void printAllCircularQueueNode(circular_queue queue) {
@@ -65,7 +66,7 @@ void printAllCircularQueueNode(circular_queue queue) {
         
         printf("** Print Circular Queue : [");
         
-        for (int64_t i = queue.front + 1; i <= queue.rear; i++) {
+        for (int64_t i = 0; i <= queue.rear; i++) {
             printf(" %lld", queue.arrayIndex[i]);
         }
         printf(" ]\n");

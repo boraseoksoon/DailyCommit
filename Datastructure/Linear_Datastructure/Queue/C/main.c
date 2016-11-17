@@ -22,13 +22,20 @@ int main(int argc, char* argv[], char** envp) {
     circular_enqueue(&circular_queue, 2);
     circular_enqueue(&circular_queue, 3);
     circular_enqueue(&circular_queue, 4);
-    // circular_enqueue(&circular_queue, 5);
+    circular_enqueue(&circular_queue, 5);
+    circular_enqueue(&circular_queue, 6);
+
+    printf("circular_queue dequeue : %lld\n", circular_dequeue(&circular_queue));
+    printf("circular_queue dequeue : %lld\n", circular_dequeue(&circular_queue));
+    printf("circular_queue dequeue : %lld\n", circular_dequeue(&circular_queue));
+    printf("circular_queue dequeue : %lld\n", circular_dequeue(&circular_queue));
+    printf("circular_queue dequeue : %lld\n", circular_dequeue(&circular_queue));
+    printf("circular_queue dequeue : %lld\n", circular_dequeue(&circular_queue));
+    printf("circular_queue dequeue : %lld\n", circular_dequeue(&circular_queue));
     
-    printf("circular_queue dequeue : %lld\n", circular_dequeue(&circular_queue));
-    printf("circular_queue dequeue : %lld\n", circular_dequeue(&circular_queue));
-    printf("circular_queue dequeue : %lld\n", circular_dequeue(&circular_queue));
-    // printf("circular_queue dequeue : %lld\n", circular_dequeue(&circular_queue));
-    // printf("circular_queue dequeue : %lld\n", circular_dequeue(&circular_queue));
+    circular_enqueue(&circular_queue, 6);
+    circular_enqueue(&circular_queue, 7);
+    circular_enqueue(&circular_queue, 8);
     
     printAllCircularQueueNode(circular_queue);
     
