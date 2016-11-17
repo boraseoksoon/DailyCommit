@@ -13,11 +13,26 @@
 
 int main(int argc, char* argv[], char** envp) {
     
-#ifdef LIST__CIRCULAR__QUEUE
-    printf("****** CIRCULAR QUEUE implemented BY ARRAY Begins ------> \n");
-#elif ARRAY_CIRCULAR__QUEUE
-    printf("****** CIRCULAR QUEUE implemented BY ARRAY Begins ------> \n");
-#endif
+
+    printf("****** CIRCULAR QUEUE Begins ------> \n");
+    circular_queue circular_queue;
+    initCircularQueue(&circular_queue);
+    circular_enqueue(&circular_queue, 1);
+    circular_enqueue(&circular_queue, 2);
+    circular_enqueue(&circular_queue, 3);
+    circular_enqueue(&circular_queue, 4);
+    // circular_enqueue(&circular_queue, 5);
+    
+    printf("circular_queue dequeue : %lld\n", circular_dequeue(&circular_queue));
+    printf("circular_queue dequeue : %lld\n", circular_dequeue(&circular_queue));
+    printf("circular_queue dequeue : %lld\n", circular_dequeue(&circular_queue));
+    // printf("circular_queue dequeue : %lld\n", circular_dequeue(&circular_queue));
+    // printf("circular_queue dequeue : %lld\n", circular_dequeue(&circular_queue));
+    
+    printAllCircularQueueNode(circular_queue);
+    
+    
+    
     printf("****** CIRCULAR QUEUE Ends ------> \n");
     
 #ifdef LIST__QUEUE
