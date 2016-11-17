@@ -16,7 +16,7 @@ void initArrayQueue(arrayQueue* queue) {
 
 bool isQueueFull(arrayQueue queue) {
     
-    if (queue.rear >= ARRAY_QUEUE_MAX_SIZE){
+    if (queue.rear >= ARRAY_QUEUE_MAX_SIZE - 1){
         return true;
     }
     

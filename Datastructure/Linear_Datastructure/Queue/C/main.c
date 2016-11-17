@@ -68,6 +68,12 @@ int main(int argc, char* argv[], char** envp) {
         arr_enqueue(&arr_queue, i);
     }
     
+    if (isQueueFull(arr_queue)) {
+        printf("true!\n");
+    } else {
+        printf("false!\n");
+    }
+    
     for (__int64_t i = arr_queue.rear; i > ARRAY_QUEUE_INITIALIZE_INDEX + 3; i--) {
         arr_dequeue(&arr_queue);
     }
