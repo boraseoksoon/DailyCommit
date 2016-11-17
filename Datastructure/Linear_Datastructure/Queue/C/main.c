@@ -7,6 +7,7 @@
 //
 
 #include "queue.h"
+#include "queue_array.h"
 #include "circular_queue.h"
 
 #define ENQUEUE_SIZE    10
@@ -32,19 +33,14 @@ int main(int argc, char* argv[], char** envp) {
     printAllCircularQueueNode(circular_queue);
     
     
-    
     printf("****** CIRCULAR QUEUE Ends ------> \n");
     
 #ifdef LIST__QUEUE
     printf("****** QUEUE implemented BY LIST Begins ------> \n");
     
-#elif ARRAY_QUEUE
-    printf("****** QUEUE implemented BY ARRAY Begins ------> \n");
-#endif
-
     queue queue;
     initQueue(&queue);
-
+    
     
     printf("** Now, enqueue-ing bunch of datas...\n");
     
@@ -59,9 +55,27 @@ int main(int argc, char* argv[], char** envp) {
     }
     
     printf("\n");
-
-    printf("****** QUEUE Ends ------> \n");
     
+    printf("****** QUEUE Ends ------> \n");
+
+#endif
+    printf("****** QUEUE implemented BY ARRAY Begins ------> \n");
+    
+    arrayQueue arr_queue;
+    initArrayQueue(&arr_queue);
+    
+    for (__int64_t i = 0; i < ARRAY_QUEUE_MAX_SIZE; i++) {
+        arr_enqueue(&arr_queue, i);
+    }
+    
+    for (__int64_t i = arr_queue.rear; i > ARRAY_QUEUE_INITIALIZE_INDEX + 3; i--) {
+        arr_dequeue(&arr_queue);
+    }
+    
+    printArrayQueueAll(arr_queue);
+    
+    printf("****** QUEUE implemented BY ARRAY Ends ------> \n");
+
     return 1;
 }
 
