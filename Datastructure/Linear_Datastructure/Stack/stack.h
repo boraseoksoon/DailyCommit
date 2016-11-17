@@ -11,7 +11,7 @@
 
 /* ADT) Stack.
  *
- *      (1) Object : Datastructure for LIFO(Last In First Out) operation operation.
+ *      (1) Object : Datastructure for LIFO(Last In First Out) operation.
  *
  *      (2) Functions :
  *          2-1. Node createStackNode(object) := create one stack node with data and return.
