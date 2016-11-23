@@ -1,5 +1,55 @@
 #include <stdio.h>
 
+void swap(int* target, int* source) {
+	int temp = *target;
+	*target = *source;
+	*source = temp;	
+}
+
+void insertionSort(int input_arr[], int arr_length) {
+	
+	int temp = 0;
+	int j = 0;
+
+	for (int i = 1; i < arr_length; i++) {
+		
+		temp = input_arr[i];
+		j = i - 1;		
+		
+		while (j >= 0 && temp < input_arr[j]) {
+			input_arr[j+1] = input_arr[j];		
+			j--;
+		}
+	
+		input_arr[j+1] = temp;
+	}
+}
+
+void bubbleSort(int input_arr[], int arr_length) {
+
+	for (int i = 1; i < arr_length; i++) {
+		for (int j = 0; j < arr_length - i; j++) {
+			if (input_arr[j] > input_arr[j+1]) {
+				swap(&input_arr[j], &input_arr[j+1]);
+			}
+		}
+	}
+}
+
+void selectionSort(int input_arr[], int arr_length) {
+
+	for ( int i = 0; i < arr_length; i++) {
+		for (int j = i; j < arr_length; j++) {
+			if (input_arr[i] > input_arr[j]) {
+				swap(&input_arr[i], &input_arr[j]);
+			}
+		}
+	}
+}
+
+
+
+
 // iteration binary search
 int iteration_binary_search(int arr[], int arr_length, int key) {
 
@@ -76,8 +126,21 @@ int sequential_search(int arr[], int arr_length, int key) {
 
 int main(int argc, char* argv[], char* envp[]){
 
-	int arr[] = {1,3, 5, 7, 8, 10, 13, 15, 17, 22, 30, 99};	
+	// int arr[] = {1,3, 5, 7, 8, 10, 13, 15, 17, 22, 30, 99};
+	int arr[] = {10,9,33,43,63,22,7,2,84,12,99,100};	
 	int arr_length = sizeof(arr) / sizeof(arr[0]);
+	
+	for (int i = 0; i < arr_length; i++) {
+		printf("original arr[%d] : %d\n", i, arr[i]);
+	}
+
+	// selectionSort(arr, arr_length);
+	// bubbleSort(arr, arr_length);
+	insertionSort(arr, arr_length);
+
+	for (int i = 0; i < arr_length; i++) {
+		printf("sorted arr[%d] : %d\n", i, arr[i]);
+	}
 
 	printf("it should be 0 : %d\n", sequential_search(arr, arr_length, 1));
 	printf("it should be 2 : %d\n", iteration_binary_search(arr, arr_length, 5));
