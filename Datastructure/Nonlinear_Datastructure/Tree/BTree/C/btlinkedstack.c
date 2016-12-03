@@ -1,11 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "btreedef.h"
 #include "btlinkedstack.h"
 
-LinkedStack* createLinkedStack()
-{
+LinkedStack* createLinkedStack() {
+    
 	LinkedStack *pReturn = NULL;
     
 	pReturn = (LinkedStack *)malloc(sizeof(LinkedStack));
@@ -20,8 +19,8 @@ LinkedStack* createLinkedStack()
 	return pReturn;
 }
 
-int pushLS(LinkedStack* pStack, StackNode element)
-{
+int pushLS(LinkedStack* pStack, StackNode element) {
+    
 	int ret = FALSE;
 	StackNode *pNode = NULL;
 
@@ -44,9 +43,9 @@ int pushLS(LinkedStack* pStack, StackNode element)
 	return ret;
 }
 
-StackNode* popLS(LinkedStack* pStack)
-{
-	StackNode* pReturn = NULL;
+StackNode* popLS(LinkedStack* pStack) {
+	
+    StackNode* pReturn = NULL;
 	if (pStack != NULL)	{
 		if (isLinkedStackEmpty(pStack) == FALSE) {
 			pReturn = pStack->pTopElement;
@@ -60,8 +59,8 @@ StackNode* popLS(LinkedStack* pStack)
 	return pReturn;
 }
 
-StackNode* peekLS(LinkedStack* pStack)
-{
+StackNode* peekLS(LinkedStack* pStack) {
+    
 	StackNode* pReturn = NULL;
 	if (pStack != NULL) {
 		if (isLinkedStackEmpty(pStack) == FALSE) {
@@ -72,8 +71,7 @@ StackNode* peekLS(LinkedStack* pStack)
 	return pReturn;
 }
 
-void deleteLinkedStack(LinkedStack* pStack)
-{
+void deleteLinkedStack(LinkedStack* pStack) {
 	StackNode *pNode = NULL;
 	StackNode *pDelNode = NULL;
 
@@ -88,14 +86,12 @@ void deleteLinkedStack(LinkedStack* pStack)
 	}	
 }
 
-int isLinkedStackFull(LinkedStack* pStack)
-{
+int isLinkedStackFull(LinkedStack* pStack) {
 	int ret = FALSE;
 	return ret;
 }
 
-int isLinkedStackEmpty(LinkedStack* pStack)
-{
+int isLinkedStackEmpty(LinkedStack* pStack) {
 	int ret = FALSE;
 
 	if (pStack != NULL) {

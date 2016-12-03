@@ -1,11 +1,23 @@
 #ifndef _B_TREE_
 #define _B_TREE_
 
-#include "btreedef.h"
+#include "btlinkedstack.h"
 
-typedef struct BTreeType
-{
-	BTreeNode *pRootNode;
+#define BTREE_ORDER		5
+
+typedef struct BTreeNodeDataType {
+    int key;
+    char value;
+} BTreeNodeData;
+
+typedef struct BTreeNodeType {
+    int elementCount;
+    BTreeNodeData element[BTREE_ORDER];
+    struct BTreeNodeType* pChildren[BTREE_ORDER+1];
+} BTreeNode;
+
+typedef struct BTreeType {
+    BTreeNode *pRootNode;
 } BTree;
 
 BTree* createBTree();
@@ -28,8 +40,7 @@ int deleteNodeBT(BTree* pBTree, int key);
 
 int isLeafNode(BTreeNode* pParentNode);
 
-BTreeNode* replaceLeafNodeBT(BTree *pBTree, BTreeNode* pDelNode, int index,
-								struct LinkedStackType* pStack);
+BTreeNode* replaceLeafNodeBT(BTree *pBTree, BTreeNode* pDelNode, int index, struct LinkedStackType* pStack);
 
 void deleteKeyBT(BTreeNode* pNode, int index);
 
