@@ -5,6 +5,8 @@
 #define DIMENSIONAL_ARRAY_1		100 
 #define DIMENSIONAL_ARRAY_2		1000
 #define LOGARITHM_SAMPLE_CONSTANT	10000
+#define ARR_MAX_SIZE	11
+
 /* time complexity check. 
  * usually, standard time complexity is bigO  notation is used.
  */
@@ -64,9 +66,55 @@ arrayPointer squareSample() {
 	return arr;
 }
 
+void swap(int* target1, int* target2) {
+    
+    int temp = *target1;
+    *target1 = *target2;
+    *target2 = temp;
+}
+
+int partition(int arr[], int start, int end) {
+    
+    int left = start;
+    int right = end;
+    
+    int pivot = (left + right) / 2;
+    
+    while (left < right) {
+        
+        while ((arr[left] < arr[pivot]) && (left < right)) {
+            // move left flag to right til it crosses.
+            left++;
+        }
+        
+        while ((arr[right] >= arr[pivot]) && (left < right)) {
+            // move right flag to left til it crosses.
+            right--;
+        }
+        
+        // if left and right flag does not move anymore because it finds the proper value for it.
+        if (left < right) {
+            swap(&arr[left], &arr[right]);
+        }
+    }
+    
+    // swap pivot witht the value crossing left and right flag.
+    swap(&arr[pivot], &arr[right]);
+
+    return left;
+}
+
+void quickSort(int arr[], int start, int end) {
+    
+    if (start < end) {
+        int p = partition(arr, start, end);
+        quickSort(arr, start, p - 1);
+        quickSort(arr, p + 1, end);
+    }
+}
 int main() {
 
-	int arr[] = {1,2,3,4,5,6,7,8,9,9,10};
+	int arr[ARR_MAX_SIZE] = {111,22,3,453,35,5321,70,28,99,99,10};
 	int arrLength = sizeof(arr) / sizeof(arr[0]);
 	// O(1) : constant time complexity.
 	// O(logn) : logarithm time complexity.
@@ -78,7 +126,14 @@ int main() {
 	printf("logarithm : %d\n", logarithmSample(LOGARITHM_SAMPLE_CONSTANT));
 	printf("linear : %d\n", linearSample(arr, arrLength));
 	// big O of quick sort is O(n^2) but average takes O(nLogn) and has been proved as the quickest sorting so far even though it has quadratic, big O, time complexity.
-	printf("log linear : \n");
+	printf("log linear : (using quick sort below)\n");
+	
+	quickSort(arr, 0, ARR_MAX_SIZE-1);
+    
+    	for (int i = 0; i < ARR_MAX_SIZE; i++) {
+       		printf("arr[%d] : %d\n", i, arr[i]);
+    	}
+
 	printf("quadratic time is below : \n");
 
 	int(*squareArr)[DIMENSIONAL_ARRAY_2] = squareSample();	 
