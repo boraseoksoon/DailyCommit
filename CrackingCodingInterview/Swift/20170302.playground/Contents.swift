@@ -335,8 +335,8 @@ class VerySimpleStack <T> {
      * PrintAll
      * GetStackSize
      */
-    var stackTotalIndex = 0
-    var topNode: Node<T>?
+    private var stackTotalIndex = 0
+    private var topNode: Node<T>?
     
     init (rootNodeData: T) {
         let newNode = Node(data:rootNodeData)
@@ -407,26 +407,32 @@ class VerySimpleStack <T> {
         }
     }
     
-    func getStackSize() -> Int {
+    public func getStackSize() -> Int {
         return stackTotalIndex + 1
     }
 }
 
 // Using Stack LIFO.
-var vsStack = VerySimpleStack<Character>()
-
-for ch in orderedString.characters {
-    vsStack.push(inputData:ch)
-}
-var reversedString2: String = ""
-if let orderedCharactersList = vsStack.popAll() {
-    for ch in orderedCharactersList {
-        reversedString2 = reversedString2 + String(ch)
+let orderedString2 = "HAHA HELLO WORLD HOHO!"
+func reverseString(targetString: String) -> String {
+    var vsStack = VerySimpleStack<Character>()
+    
+    for ch in targetString.characters {
+        vsStack.push(inputData:ch)
     }
-} else {
-    print("orderedCharactersList optional binding failed!")
+    var reversedString2: String = ""
+    if let orderedCharactersList = vsStack.popAll() {
+        for ch in orderedCharactersList {
+            reversedString2 = reversedString2 + String(ch)
+        }
+    } else {
+        print("orderedCharactersList optional binding failed!")
+    }
+    
+    return reversedString2
 }
 
+let reversedString2 = reverseString(targetString:orderedString2)
 print("reversed-String2 using the Stack : \(reversedString2)")
 
 // vsStack.printAll()
