@@ -2,6 +2,36 @@
 
 import UIKit
 
+let count = "hello".characters.count
+
+for i in (0 ..< count).reversed() {
+    print(i)
+    print("say hello \(count) times!")
+}
+/*
+4
+say hello 5 times!
+3
+say hello 5 times!
+2
+say hello 5 times!
+1
+say hello 5 times!
+0
+say hello 5 times!
+*/
+
+
+for i in stride(from: 5, to: 10, by: 2) {
+    print("stride : \(i)")
+}
+/*
+ stride : 5
+ stride : 7
+ stride : 9
+*/
+
+
 var str = "20170306 Simple Binary Search"
 
 // sorting
