@@ -1,0 +1,30 @@
+<!-- now 템플릿 태그는 현재의 날짜와 시간을 원하는 포맷으로 출력합니다 포맷 문자열을 인자로 받습니다 N d, Y => July 18, 2015 -->
+<h1>Post Archives until {% now "N d, Y" %}</h1>
+
+<ul>
+    <!--
+    date_list 컨텍스트 변수는 DateQuerySet 객체 리스트를 담고 있다.
+    DateQuerySet 객체 리스트는 QuerySet 객체 리스트에서 날짜 정보만을 추출해 담고 있는 객체 리스트이다.
+    DateQuerySet에 들어있는 객체는 datetime.date 타입의 객체이다.
+    -->
+    {% for date in date_list %}
+    <li style="display:inline;">
+        <a href="{% url 'blog:post_year_archive' date|date:'Y' %}">Year - {{ date|date:"Y"}}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<br/>
+
+<div>
+    <ul>
+        <!-- default 컨텍스트 변수로 object_list 와 latest도 가능하다 -->
+        {% for post in object_list %}
+            <li>{{ post.modify_date|date:"Y-m-d" }}&nbsp;&nbsp;&nbsp;
+                <a href="{{ post.get_absolute_url }}">
+                    <strong>{{ post.title }}</strong>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

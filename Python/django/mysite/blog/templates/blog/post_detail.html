@@ -1,0 +1,31 @@
+<!-- object 객체는 PostDV 클래스형 뷰에서 컨텍스트 변수로 넘겨주는 Post 클래스의 특정 객체이다.-->
+<h2>{{ object.title }}</h2>
+
+<p class="other_posts">
+    <!-- get_previous_by_modify_date 함수는 이전 객체를, get_previous_post.get_absolute_url 함수는
+         이전 객체를 지칭하는 URL 패턴을 반환한다 따라서 이 문장은 이전 객체의 문자열 텍스트를 출력하고 그 텍스트에 URL 링크를 연결합니다.
+         따라서 이 문장은 이전 객체의 문자열 텍스트를 출력하고 그 텍스트에 URL 링크를 연결합니다.
+         링크는 /blog/post/slug단어/ 와 같은 형식이 될 것이다.
+     -->
+    {% if object.get_previous_by_modify_date %}
+        <a href="{{  object.get_previous_post.get_absolute_url }}" title="View previous post">
+        &laquo;--{{ object.get_previous_post }}
+        </a>
+    {% endif %}
+
+    <!-- 상동이나 previous가 아니라 next -->
+    {% if object.get_next_by_modify_date %}
+        |
+        <a href="{{  object.get_next_post.get_absolute_url }}" title="View next post">
+             {{ object.get_next_post }} -- &raquo;
+        </a>
+    {% endif %}
+</p>
+
+<!-- j F Y의 포맷으로 modify_date 속성값 출력, 예 : 12 July 2015 -->
+<p class="date">{{ object.modify_date|date:"j F Y" }}</p>
+<br/>
+
+<div class="body">
+    {{ object.content|linebreaks }}
+</div>

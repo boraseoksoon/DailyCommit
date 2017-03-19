@@ -1,0 +1,33 @@
+<!-- 별도로 HTML 태그 지정이 없다면 장고는 <body>영역으로 간주한다. -->
+
+<h1>Blog List</h1>
+
+{% for post in posts %}
+    <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+    <!-- 다음 줄에 객체의 modify_date 속성값을 "N d, Y" 포맷으로 출력(예 : July 05, 2015) -->
+    {{ post.modify_date|date:"N d, Y" }}
+    <p>{{ post.description }}</p>
+{% endfor %}
+
+<br/>
+
+<div>
+    <span>
+        <!-- page_obj는 장고의 page 객체가 들어 있는 컨텍스트 변수이다 현재 페이지를 기준으로 이전 페이지가 있는지 확인한다. -->
+        {% if page_obj.has_previous %}
+            <!-- 이전 페이지의 번호이다 -->
+            <a href="?page={{ page_obj.previous_page_number }}">PreviousPage</a>
+        {% endif %}
+
+        <!-- page_obj.number : 현재 페이지 번호
+             page_obj.paginator.num_pages : 총 페이지 수
+        -->
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+
+        <!-- 위와 동일하나 previous 가 아니라 next -->
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">NextPage</a>
+        {% endif %}
+
+    </span>
+</div>
