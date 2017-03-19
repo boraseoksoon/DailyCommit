@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+
+/*
+Three simple, but useful, jQuery methods for DOM manipulation are:
+
+text() - Sets or returns the text content of selected elements
+html() - Sets or returns the content of selected elements (including HTML markup)
+val() - Sets or returns the value of form fields
+*/
+
+$(document).ready(function(){
+    // text, value setter / getter
+    $("#btn1").click(function(){
+      // setter
+      $("#test1").text("Hello world!");
+      // getter
+       alert("Text1: " + $("#test1").text());
+    });
+
+    $("#btn2").click(function(){
+      // setter
+      $("#test2").html("<b>Hello world!</b>");
+      // getter
+      alert("Text2: " + $("#test2").html());
+    });
+
+    $("#btn3").click(function(){
+      // setter
+      $("#test3").val("Dolly Huck");
+      // getter
+      alert("test3 Value: " + $("#test3").val());
+    });
+
+    // attr setter, getter(href)
+    $("#btn4").click(function(){
+        // setter
+        $("#w3s").attr("href", function(i, origValue){
+            return origValue + "/jquery";
+        });
+        // getter
+        alert($("#w3s").attr("href"))
+    });
+
+
+    // css getter/setter
+    $("#btn5").click(function(){
+      // setter
+      $("p").css("background-color", "yellow");
+      // getter
+      alert("Background color = " + $("#p1").css("background-color"));
+    });
+
+
+});
+</script>
+</head>
+<body>
+
+<!-- attr setter / getter -->
+<p><a href="https://www.w3schools.com" id="w3s">W3Schools.com</a></p>
+<button>Change href Value</button>
+<p>Mouse over the link (or click on it) to see that the value of the href attribute has changed.</p>
+
+
+<p id="test1">This is a paragraph.</p>
+<p id="test2">This is another paragraph.</p>
+
+<p>Input field: <input type="text" id="test3" value="Mickey Mouse"></p>
+
+
+<!-- for CSS getter/setter -->
+<p id="p1" style="background-color:#ff0000">This is a paragraph.</p>
+<p style="background-color:#00ff00">This is a paragraph.</p>
+<p style="background-color:#0000ff">This is a paragraph.</p>
+
+<button id="btn1">Set/get Text</button>
+<button id="btn2">Set/GET HTML</button>
+<button id="btn3">Set/GET Value</button>
+<button id="btn4">Set/GET attr</button>
+<button id="btn5">Set/Get CSS</button>
+
+</body>
+</html>

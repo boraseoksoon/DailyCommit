@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <form class="frm1" action="index.html">
+      <input type="text" name="fname" value="Donald">
+      <input type="text" name="lname" value="Duck">
+      <input type="submit" value="Submit">
+    </form>
+    <p>Click "Try it" to display the value of each element in the form.</p>
+    <button onclick="myfunction()" name="">Try it!</button>
+
+    <p id="demo">??</p>
+
+    <script type="text/javascript">
+    function myfunction() {
+      var x = document.forms["frm1"];
+      var text = "";
+      var i;
+      // it does not work.
+      for (i = 0; i < x.length; i++) {
+          text += x.elements[i].value + "<br>";
+      }
+      document.getElementById("demo").innerHTML = text;
+    }
+    </script>
+  </body>
+</html>

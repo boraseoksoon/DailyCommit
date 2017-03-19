@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p id="p1">Hello world!</p>
+<button onclick="clickOnChange()">clickOnChange!</button>
+<button onclick="clickOnData()">clickOnData</button>
+<script>
+
+function clickOnChange() {
+  document.getElementById("p1").innerHTML = "New text!";
+}
+function clickOnData() {
+  document.write(Date());
+}
+
+</script>
+</body>
+</html>

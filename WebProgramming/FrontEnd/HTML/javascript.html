@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+      // you can write javascript right here.
+      var test = "hello"
+      novar = " world"
+      // alert(test + novar)
+
+      // javascript data type
+      var number = 1
+      var number2 = 1.0
+      var string = "String"
+      var boolean = true
+      var functionType = function(){}
+      var object_ = {};
+
+      // simple closure
+      var closure = function(obj){
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+              alert(obj[key])
+            }
+        }
+      }
+      // dictionary
+      var object = {"key1":"value1", "key2":true}
+
+      closure(object)
+
+      // list
+      var basket = ["Apple", "grape", "tomato"]
+
+      // for iteration
+      for (i in basket) {
+        console.log(basket[i])
+      }
+
+      var numbers = [];
+      numbers = new Array()
+      numbers.push("1")
+      numbers.push("2")
+      numbers.push("3")
+
+      numbers.pop()
+      for (i in numbers) {
+        console.log(numbers[i])
+      }
+
+
+    </script>
+    <title>Insert title here!</title>
+  </head>
+  <body>
+      Hello! Javascript ana Jquery!
+  </body>
+</html>
