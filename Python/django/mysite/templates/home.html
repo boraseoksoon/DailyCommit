@@ -5,16 +5,47 @@
 {% load staticfiles %}
 {% block extrastyle %}{% static "css/home.css" %}{% endblock %}
 
-
-
 {% block content %}
-    <div id="content">
-        This is CONTENT area.
+    <div id="content_home">
+        <div id="homeimg">
+            <a href="/">
+                <img src="{% static 'img/django-actor-big.jpg' %}" style="height:256px;"/>
+                <!-- <img src="http://www.kccosd.org/files/testing_image.jpg" style="height:256px;"/> -->
+                <h4 style="margin: 0;">This is Django powered web site</h4>
+            </a>
+        </div>
+        <hr style="margin: 5px;">
+
+
+        <h2>Select Application</h2>
+
+        <table id="applist">
+            <tr>
+                <td><b><i><a href="#">Bookmark</a></i></b></td>
+                <td>You can write your own post and share to others.</td>
+                <td class="Edit"><i><a href="#">Add</a></i></td>
+                <td class="Edit"><i><a href="#">Change</a></i></td>
+            </tr>
+
+            <tr>
+                <td><b><i><a href="#">Blog</a></i></b></td>
+                <td>You can write your own post and share to others</td>
+                <td class="Edit"><i><a href="#">Add</a></i></td>
+                <td class="Edit"><i><a href="#">Change</a></i></td>
+            </tr>
+
+            <tr>
+                <td><b><i><a href="#">Photo</a></i></b></td>
+                <td>You can write your own post and share to others</td>
+                <td class="Edit"><i><a href="#">Add</a></i></td>
+                <td class="Edit"><i><a href="#">Change</a></i></td>
+            </tr>
+        </table>
     </div>
 {% endblock content %}
 
 {% block footer %}
     <div id="footer">
-        This is Footer area.
+        &copy; jss 2016
     </div>
 {% endblock footer %}
