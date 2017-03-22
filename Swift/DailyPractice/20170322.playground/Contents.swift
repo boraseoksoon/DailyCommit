@@ -54,6 +54,17 @@ func search(searchValue: Int, node:Node?) -> Bool {
 search(searchValue: 4, node:oneRootNode)
 
 
+// same work.
+let list = [1,4,7,9,11,14]
+let index = list.index(where: {$0 == 14})
+
+if let localIndex = index {
+    print("value found in index : \(localIndex) of the list")
+} else {
+    print("search failed. no value is in the list.")
+}
+
+
 // fizz-buzz
 var numbers: [Int] = []
 
