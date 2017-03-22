@@ -47,8 +47,6 @@ func search(searchValue: Int, node:Node?) -> Bool {
         // recursion
         return search(searchValue:searchValue, node:node?.leftChild) || search(searchValue:searchValue, node:node?.rightChild)
     }
-    
-    return false
 }
 
 search(searchValue: 4, node:oneRootNode)
