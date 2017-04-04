@@ -1,5 +1,9 @@
 # Created by https://www.gitignore.io/api/python,c++,xcode,swift,c,objective-c
 
+*.class
+*.iml
+
+
 ### Xcode Swift Playground ###
 *.xcplayground
 
