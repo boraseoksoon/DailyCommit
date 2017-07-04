@@ -6,7 +6,8 @@
 
 ### Xcode Swift Playground ###
 *.xcplayground
-
+*.pbxproj
+*.xcworkspacedata
 ### Python IDE(pycharm)###
 *.idea
 
