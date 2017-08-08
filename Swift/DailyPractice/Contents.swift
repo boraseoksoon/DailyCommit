@@ -475,6 +475,96 @@ print(flatten)
 
 /// #9: Recursive search through binary tree :
 
+//
+//  main.swift
+//  BinarySearch
+//
+//  Created by Seoksoon Jang on 2017. 8. 7..
+//  Copyright © 2017년 Seoksoon Jang. All rights reserved.
+//
+
+import Foundation
+//             100
+//             /  \
+//            /    \
+//           /      \
+//          /        \
+//        83           300
+//       /  \        /    \
+//      20    95   105     999
+//     / \   / \   / \     /  \
+//    1  23 84 99 104 200 998 1001
+
+let searchValue = 1001
+let sameValueList = [100, 300, 83, 20, 95, 105, 999, 1, 23, 84, 99, 104, 200, 998, 1001]
+var searchCount = 0
+print("/***** linear brute force searching... ***/")
+let index = sameValueList.index{
+    searchCount += 1
+    print("\(searchCount) times search executed!");
+    return $0 == searchValue
+}
+
+class Node {
+    let value: Int
+    var left: Node?
+    var right: Node?
+    
+    init(value: Int, left: Node?, right: Node?) {
+        self.value = value
+        self.left = left
+        self.right = right
+    }
+}
+/* tree construction */
+// leaf node
+let node1 = Node(value: 1, left:nil , right: nil)
+let node23 = Node(value: 23, left:nil , right: nil)
+let node84 = Node(value: 84, left:nil , right: nil)
+let node99 = Node(value: 99, left:nil , right: nil)
+let node104 = Node(value: 104, left:nil , right: nil)
+let node200 = Node(value: 200, left:nil , right: nil)
+let node998 = Node(value: 998, left:nil , right: nil)
+let node1001 = Node(value: 1001, left:nil , right: nil)
+
+// left tree construction
+let node20 = Node(value: 20, left:node1 , right: node23)
+let node95 = Node(value: 95, left:node84, right: node99)
+let node83 = Node(value: 83, left:node20, right: node95)
+
+// right tree construnction
+let node105 = Node(value: 105, left:node104, right: node200)
+let node999 = Node(value: 999, left:node998, right: node1001)
+let node300 = Node(value: 300, left:node105, right: node999)
+
+// root node
+let rootNode100 = Node(value: 100, left:node83, right: node300)
+
+func searchBinaryTree(for searchValue : Int, rootNode: Node?) -> Bool {
+    searchCount += 1
+    print("\(searchCount) times search executed!")
+    if rootNode == nil {
+        return false
+    }
+    
+    if (searchValue == rootNode?.value) {
+        return true
+    } else {
+        if searchValue > (rootNode?.value)! {
+            return searchBinaryTree(for: searchValue, rootNode: rootNode?.right)
+        } else if searchValue < (rootNode?.value)! {
+            return searchBinaryTree(for: searchValue, rootNode: rootNode?.left)
+        }
+    }
+    return false
+}
+
+print("/***** BST searching... ***/")
+searchCount = 0
+let isFound = searchBinaryTree(for: searchValue, rootNode: rootNode100)
+print(isFound)
+
+
 /// #10: Reverse Linked-List :
 class Node {
     let value: Int
@@ -508,8 +598,7 @@ func printLinkedList(headNode: Node?) -> Void {
 }
 
 print("*** printLinkedList in order *** ")
-// should be 1,2,3
-printLinkedList(headNode: firstNode)
+printLinkedList(headNode: firstNode)    // should be 1,2,3
 
 // #1. solution 1 : reconstruction
 func reverseLinkedList(headNode: Node?) -> Void {
@@ -533,15 +622,12 @@ func reverseLinkedList(headNode: Node?) -> Void {
 }
 
 print("*** printLinkedList in reverse : reconstruction *** ")
-// it should be 3,2,1
-reverseLinkedList(headNode: firstNode)
-
+reverseLinkedList(headNode: firstNode)  // it should be 3,2,1
 
 print("*** printLinkedList in reverse : simply put pointer *** ")
 // #1. solution 2 : simply put pointer
 
-// before : 1->2->3->4->5->6->7->nil
-// after : nil(currentNode, next)->7(prev)->6->5->4->3->2->1->nil
+// before : 1->2->3->4->5->6->7->nil, after : nil(currentNode, next)->7(prev)->6->5->4->3->2->1->nil
 func getHeadNodeOfReverseLinkedList(head: Node?) -> Node {
     var currentNode = head
     var prev: Node?
