@@ -334,22 +334,6 @@ print(even)
  //
  //
  //
- //  reduce
- //
- //
- *********/
-
-
-// reduce
-let reduceResult = mapList.reduce(0, { sum, num in
-    sum + num
-})
-
-
-/*********
- //
- //
- //
  //  filter
  //
  //
@@ -360,7 +344,6 @@ let filterList = list.filter { $0 is Int }
     .filter { return ($0 as! Int) % 2 == 0 }
     .sorted { $0 as! Int > $1 as! Int }
 print(filterList)
-
 
 
 /*********
@@ -377,13 +360,20 @@ let mapList = filterList.map({
     ($0 as! Int) + 1
 })
 
-// index in map
-let numberList = [7, 8, 9, 10]
-let indexAndNum: [String] = numberList.enumerated().map { (index, element) in
-    return "\(index): \(element)"
-}
-print(indexAndNum)
-// ["0: 7", "1: 8", "2: 9", "3: 10"]
+/*********
+ //
+ //
+ //
+ //  reduce
+ //
+ //
+ *********/
+
+
+// reduce
+let reduceResult = mapList.reduce(0, { sum, num in
+    sum + num
+})
 
 
 // index in map
@@ -393,7 +383,6 @@ let indexAndNum: [String] = numberList.enumerated().map { (index, element) in
 }
 print(indexAndNum)
 // ["0: 7", "1: 8", "2: 9", "3: 10"]
-
 
 // create example list
 /*
@@ -408,7 +397,7 @@ print(indexAndNum)
  }
  */
 
-let list: [Any] = Array(0..<1000).enumerated().map { (index, element) in
+let mixlist: [Any] = Array(0..<1000).enumerated().map { (index, element) in
     if index % 2 == 0 {
         return String(arc4random_uniform(1000) + 1)
     } else {
@@ -416,7 +405,7 @@ let list: [Any] = Array(0..<1000).enumerated().map { (index, element) in
     }
 }
 
-print("list : \(list)")
+print("mixlist : \(mixlist)")
 
 
 /*********
@@ -488,7 +477,6 @@ let flatten = ["Cenny", "42", "666", "Seven"].flatMap { Int($0) } // [42, 666]
 print(flatten)
 
 
-
 /// #9: Recursive search through binary tree :
 
 
@@ -506,8 +494,9 @@ print(flatten)
 
 /// #14: Social media app :
 
+
 /// #15: Counting Palindromes :
 
 
 
-
+print("end of the program!")
