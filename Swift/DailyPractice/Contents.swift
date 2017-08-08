@@ -310,7 +310,6 @@ print(solvedTrack)
 
 /// #8: Map, filter, reduce(it is done) :
 
-
 /*********
  //
  //
@@ -344,7 +343,6 @@ let filterList = list.filter { $0 is Int }
     .filter { return ($0 as! Int) % 2 == 0 }
     .sorted { $0 as! Int > $1 as! Int }
 print(filterList)
-
 
 /*********
  //
@@ -406,7 +404,6 @@ let mixlist: [Any] = Array(0..<1000).enumerated().map { (index, element) in
 }
 
 print("mixlist : \(mixlist)")
-
 
 /*********
  //
@@ -476,27 +473,102 @@ print(optionalNumbersFlatMap) // [1, 3]
 let flatten = ["Cenny", "42", "666", "Seven"].flatMap { Int($0) } // [42, 666]
 print(flatten)
 
-
 /// #9: Recursive search through binary tree :
 
-
 /// #10: Reverse Linked-List :
+class Node {
+    let value: Int
+    var next: Node?
+    
+    init(value: Int, next: Node?) {
+        self.value = value
+        self.next = next
+    }
+    
+    init(node: Node) {
+        self.value = node.value
+        self.next = node.next
+    }
+}
 
+let seventhNode = Node(value: 7, next: nil)
+let sixthNode = Node(value: 6, next: seventhNode)
+let fifthNode = Node(value: 5, next: sixthNode)
+let forthNode = Node(value: 4, next: fifthNode)
+let thirdNode = Node(value: 3, next: forthNode)
+let secondNode = Node(value: 2, next: thirdNode)
+let firstNode = Node(value: 1, next: secondNode)
+
+func printLinkedList(headNode: Node?) -> Void {
+    var currentNode = headNode
+    while currentNode != nil {
+        print(currentNode?.value ?? "default")
+        currentNode = currentNode?.next
+    }
+}
+
+print("*** printLinkedList in order *** ")
+// should be 1,2,3
+printLinkedList(headNode: firstNode)
+
+// #1. solution 1 : reconstruction
+func reverseLinkedList(headNode: Node?) -> Void {
+    var currentNode = headNode
+    var copyNode: Node?
+    
+    while currentNode != nil {
+        if copyNode == nil {
+            if let nodeValue = currentNode?.value {
+                copyNode = Node(value:nodeValue, next: nil)
+            }
+        } else {
+            if let nodeValue = currentNode?.value {
+                copyNode = Node(value: nodeValue, next: copyNode)
+            }
+        }
+        currentNode = currentNode?.next
+    }
+    
+    printLinkedList(headNode: copyNode)
+}
+
+print("*** printLinkedList in reverse : reconstruction *** ")
+// it should be 3,2,1
+reverseLinkedList(headNode: firstNode)
+
+
+print("*** printLinkedList in reverse : simply put pointer *** ")
+// #1. solution 2 : simply put pointer
+
+// before : 1->2->3->4->5->6->7->nil
+// after : nil(currentNode, next)->7(prev)->6->5->4->3->2->1->nil
+func getHeadNodeOfReverseLinkedList(head: Node?) -> Node {
+    var currentNode = head
+    var prev: Node?
+    var next: Node?
+    
+    while currentNode != nil {
+        next = currentNode?.next
+        currentNode?.next = prev
+        prev = currentNode
+        currentNode = next
+    }
+    return prev!
+}
+
+printLinkedList(headNode: getHeadNodeOfReverseLinkedList(head: firstNode))
 
 /// #11: Swift Retain Cycle :
 
-
 /// #12: Swift Closure Reference Cycle :
-
 
 /// #13: Draw circle using math
 
-
 /// #14: Social media app :
-
 
 /// #15: Counting Palindromes :
 
-
+/// #16: Abstract Syntax Tree (Warning: Somewhat Difficult Recursion)
+/// #17: Generic Stack
 
 print("end of the program!")
