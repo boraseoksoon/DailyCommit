@@ -555,6 +555,7 @@ func getHeadNodeOfReverseLinkedList(head: Node?) -> Node {
 
 printLinkedList(headNode: getHeadNodeOfReverseLinkedList(head: firstNode))
 
+print("****** Swift Retain Cycle ******")
 /// #11: Swift Retain Cycle :
 class Apartment {
     var number: Int?
@@ -590,7 +591,38 @@ jss?.apt = apt0
 apt0 = nil
 jss = nil
 
+print("****** Swift Closure Reference Cycle ******")
+
+enum ClosureError: Error {
+    case closureOptionalFailure()
+}
 /// #12: Swift Closure Reference Cycle :
+class HTMLElement {
+    var tagName: String?
+    var text: String?
+    
+    lazy var asHTML: () throws -> String = { [unowned self] in
+        if let tagName = self.tagName {
+            if let text = self.text {
+                return "<\(tagName)>\(text)</\(tagName)>"
+            }
+        }
+        throw ClosureError.closureOptionalFailure()
+    }
+    
+    init(tagName: String, text: String) {
+        self.tagName = tagName
+        self.text = text
+    }
+    
+    deinit {
+        print("HTML Element deinit!")
+    }
+}
+
+var htmlElement: HTMLElement? = HTMLElement(tagName: "h1", text: "Important Text!")
+let elementString = try? htmlElement?.asHTML()
+htmlElement = nil
 
 /// #13: Draw circle using math
 
