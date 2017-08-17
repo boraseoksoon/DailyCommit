@@ -144,7 +144,7 @@ func iterationFactorial(level: Int) -> Int {
     
     return sum
 }
-iterationFactorial(level: factorialLevel)
+print("factorialLevel(\(factorialLevel)) : \(iterationFactorial(level: factorialLevel))")
 
 // recursion version
 func recursiveFactorial(level: Int) -> Int {
@@ -154,9 +154,13 @@ func recursiveFactorial(level: Int) -> Int {
         return level * recursiveFactorial(level: level - 1)
     }
 }
-recursiveFactorial(level: factorialLevel)
+
+print("recursiveFactorial(\(factorialLevel)) : \(recursiveFactorial(level: factorialLevel))")
 
 /// #4: Common name in array :
+print("************************************")
+print("/****** Common name in array *****/")
+print("************************************")
 func mostCommonName(inList: [String]) -> (String, Int) {
     var nameDictionary = [String: Int]()
     for name in inList {
@@ -198,6 +202,10 @@ print("mostCommonName : \(mostCommonNameTuple.0)")
 print("Count of mostCommonName : \(mostCommonNameTuple.1)")
 
 /// #5: Reverse every words :
+print("************************************")
+print("/****** Reverse every words *****/")
+print("************************************")
+
 // requirement 1. reverse every words.
 // requirement 2. reverse every each seconds time words. ex : hello 'dlrow' you 'yam' be 'ecin'.
 // requirement 3. remove all vowels in sentences.
@@ -237,6 +245,9 @@ print(reverseSentence(givenSentence))
 
 
 /// #6: Fibonnaci sequence :
+print("************************************")
+print("/****** Fibonnaci sequence *****/")
+print("************************************")
 // requirement 1 : you know, fibonacci. 1, 1, 2, 3, 5, 8, 13, 21, 34......
 //                just get list of fibonacci number when fibonacci level input is given.
 
@@ -280,6 +291,9 @@ print(fiboList2)
 
 
 /// #7: Wrapping an array :
+print("************************************")
+print("/****** Wrapping an array *****/")
+print("************************************")
 // requirements 1. if track is selected, starting from selected track, wrapping array, all prior track with selected track, should move to top of list.
 //                 then, other remaining array section should be moved into after above wrapping array.
 
@@ -310,6 +324,10 @@ print(solvedTrack)
 
 
 /// #8: Map, filter, reduce(it is done) :
+
+print("************************************")
+print("/****** Map, filter, reduce *****/")
+print("************************************")
 
 /*********
  //
@@ -476,6 +494,10 @@ print(flatten)
 
 
 
+print("************************************")
+print("/****** Reverse Linked-List *****/")
+print("************************************")
+
 /// #10: Reverse Linked-List :
 class Node {
     let value: Int
@@ -555,7 +577,9 @@ func getHeadNodeOfReverseLinkedList(head: Node?) -> Node {
 
 printLinkedList(headNode: getHeadNodeOfReverseLinkedList(head: firstNode))
 
-print("****** Swift Retain Cycle ******")
+print("************************************")
+print("/****** Swift Retain Cycle *****/")
+print("************************************")
 /// #11: Swift Retain Cycle :
 class Apartment {
     var number: Int?
@@ -591,7 +615,10 @@ jss?.apt = apt0
 apt0 = nil
 jss = nil
 
-print("****** Swift Closure Reference Cycle ******")
+
+print("************************************")
+print("/****** Closure Reference Cycle *****/")
+print("************************************")
 
 enum ClosureError: Error {
     case closureOptionalFailure()
@@ -633,6 +660,10 @@ print("****** Social media app ******")
 // do another UI-focused-practice project
 
 /// #15: Counting Palindromes :
+print("************************************")
+print("/****** Counting Palindromes *****/")
+print("************************************")
+
 let givenString = "madam anna kayak evernote anna Civic racecar Civic anna anna anna"
 
 func countingPalindrome(givenString: String) -> [String:Int] {
@@ -678,6 +709,10 @@ print(result)
 
 
 /// #16: Abstract Syntax Tree (Warning: Somewhat Difficult Recursion)
+print("************************************")
+print("/****** Abstract Syntax Tree *****/")
+print("************************************")
+
 // Q1. represent the equation above in a tree
 // (25 * 6) + 5
 //
@@ -762,8 +797,108 @@ print("result : \(q2result)")
 
 
 /// #17: Generic Stack
+print("****************************")
+print("/****** Generic Stack *****/")
+print("****************************")
+
+class StackNode <T> {
+    var value: T
+    var next: StackNode<T>?
+    
+    init(value: T) {
+        self.value = value
+    }
+}
+
+class Stack <T> {
+    var topNode: StackNode <T>?
+    var count: Int = 0
+    
+    init(node: StackNode<T>) {
+        self.topNode = node
+    }
+    // ADT
+    // pop
+    func pop() -> Void {
+        if count <= 0 {
+            print("stack underflow!")
+        }
+        var currentNode = self.topNode?.next
+        self.topNode = currentNode
+        count -= 1
+    }
+    // push
+    func push(nodeToPush: StackNode<T>) -> Void {
+        nodeToPush.next = self.topNode
+        self.topNode = nodeToPush
+        count += 1
+    }
+    
+    // peek
+    func peek() -> T {
+        return self.topNode?.value as! T
+    }
+    func printAllInStackOrder() -> Void {
+        var currentNode = self.topNode
+        while currentNode != nil {
+            print(currentNode?.value as! T)
+            currentNode = currentNode?.next
+        }
+    }
+    
+    // count
+    func countStack() -> Int {
+        return self.count
+    }
+}
+
+
+let stack = Stack(node: StackNode<Int>(value: 0))
+stack.push(nodeToPush: StackNode<Int>(value: 1))
+stack.push(nodeToPush: StackNode<Int>(value: 2))
+stack.push(nodeToPush: StackNode<Int>(value: 3))
+stack.push(nodeToPush: StackNode<Int>(value: 4))
+
+print("stack.printAllInStackOrder()")
+stack.printAllInStackOrder()
+
+print("stack pop!")
+stack.pop()
+print("stack pop!")
+stack.pop()
+
+print("stack peek!")
+print(stack.peek())
+
+print("stack current count : \(stack.count)")
+
+print("stack pop!")
+stack.pop()
+print("stack peek!")
+print(stack.peek())
+
+print("stack pop!")
+stack.pop()
+
+print("stack peek!")
+print(stack.peek())
+print("stack pop!")
+stack.pop()
+stack.push(nodeToPush: StackNode<Int>(value: 100))
+print(stack.peek())
+stack.push(nodeToPush: StackNode<Int>(value: 200))
+print(stack.peek())
+stack.push(nodeToPush: StackNode<Int>(value: 300))
+stack.push(nodeToPush: StackNode<Int>(value: 400))
+stack.push(nodeToPush: StackNode<Int>(value: 500))
+
+print("stack.printAllInStackOrder()")
+stack.printAllInStackOrder()
 
 /// #18: Recursive search through binary tree :
+print("**************************************************")
+print("/****** Recursive search through binary tree *****/")
+print("**************************************************")
 
 //             100
 //             /  \
