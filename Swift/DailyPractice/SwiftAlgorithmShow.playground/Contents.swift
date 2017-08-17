@@ -678,9 +678,90 @@ print(result)
 
 
 /// #16: Abstract Syntax Tree (Warning: Somewhat Difficult Recursion)
+// Q1. represent the equation above in a tree
+// (25 * 6) + 5
+//
+//          '+'
+//          /  \
+//        '*'  5
+//       /  \ 
+//      25   6
+// all terminal node is value-node.
+
+// Q2.represent the equation above in a tree
+// ((500 - 258) * 6) + (100 / 15)
+//           '+'
+//         /     \
+//       '*'     '/'
+//       /  \    / \
+//      '-'   6 100 15
+//     / \
+//   500 258
+// all terminal node is value-node.
+
+// Node that represnet value or opeator in abstract syntax tree
+class ASTNode {
+    var value: Double?
+    var operation: String?
+    var leftNode: ASTNode?
+    var rightNode: ASTNode?
+    
+    init(value: Double?, operation: String?, leftNode: ASTNode?, rightNode: ASTNode?) {
+        self.value = value
+        self.operation = operation
+        self.leftNode = leftNode
+        self.rightNode = rightNode
+    }
+}
+
+// Q1.
+let fiveNode = ASTNode(value: 5, operation: nil, leftNode: nil, rightNode: nil)
+
+let sixNode = ASTNode(value: 6, operation:nil, leftNode:nil, rightNode:nil)
+let twentyFiveNode = ASTNode(value: 25, operation:nil, leftNode:nil, rightNode:nil)
+let multiply25_6Node = ASTNode(value: nil, operation:"*", leftNode:twentyFiveNode, rightNode:sixNode)
+
+let rootNode = ASTNode(value: nil, operation:"+", leftNode:multiply25_6Node, rightNode:fiveNode)
+
+// Q2. 
+let node100 = ASTNode(value: 100, operation: nil, leftNode: nil, rightNode: nil)
+let node15 = ASTNode(value: 15, operation: nil, leftNode: nil, rightNode: nil)
+let node258 = ASTNode(value: 258, operation: nil, leftNode: nil, rightNode: nil)
+let node500 = ASTNode(value: 500, operation: nil, leftNode: nil, rightNode: nil)
+let node6 = ASTNode(value: 6, operation: nil, leftNode: nil, rightNode: nil)
+
+let subtract500_258Node = ASTNode(value: nil, operation: "-", leftNode: node500, rightNode: node258)
+let multiplySubtract_6Node = ASTNode(value: nil, operation: "*", leftNode: subtract500_258Node, rightNode: node6)
+let divide100_15Node = ASTNode(value: nil, operation: "/", leftNode:node100, rightNode:node15)
+// root-node in Q2.
+let plusMultiply_diviceNode = ASTNode(value: nil, operation: "+", leftNode: multiplySubtract_6Node, rightNode:divide100_15Node)
+
+func evaluate(node: ASTNode) -> Double {
+    if node.value != nil {
+        return node.value!
+    }
+    
+    if node.operation == "+" {
+        return evaluate(node: node.leftNode!) + evaluate(node: node.rightNode!)
+    } else if node.operation == "*" {
+        return evaluate(node: node.leftNode!) * evaluate(node: node.rightNode!)
+    } else if node.operation == "-" {
+        return evaluate(node: node.leftNode!) - evaluate(node: node.rightNode!)
+    } else if node.operation == "/" {
+        return evaluate(node: node.leftNode!) / evaluate(node: node.rightNode!)
+    }
+    
+    return 0
+}
+
+let q1result = evaluate(node: rootNode)
+print("result : \(q1result)")
+
+let q2result = evaluate(node: plusMultiply_diviceNode)
+print("result : \(q2result)")
+
 
 /// #17: Generic Stack
-
 
 /// #18: Recursive search through binary tree :
 
