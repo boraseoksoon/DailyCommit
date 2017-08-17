@@ -556,6 +556,39 @@ func getHeadNodeOfReverseLinkedList(head: Node?) -> Node {
 printLinkedList(headNode: getHeadNodeOfReverseLinkedList(head: firstNode))
 
 /// #11: Swift Retain Cycle :
+class Apartment {
+    var number: Int?
+    var ternant: Ternant?
+    
+    init(number: Int) {
+        self.number = number
+    }
+    deinit {
+        print("Apartment deinit!")
+    }
+}
+
+class Ternant {
+    var name: String?
+    weak var apt: Apartment?
+    
+    init(name: String) {
+        self.name = name
+    }
+    deinit {
+        print("Ternant deinit!")
+    }
+}
+
+var apt0: Apartment? = Apartment(number:0)
+var jss: Ternant? = Ternant(name: "JSS")
+
+apt0?.ternant = jss
+jss?.apt = apt0
+
+
+apt0 = nil
+jss = nil
 
 /// #12: Swift Closure Reference Cycle :
 
@@ -568,7 +601,6 @@ printLinkedList(headNode: getHeadNodeOfReverseLinkedList(head: firstNode))
 /// #16: Abstract Syntax Tree (Warning: Somewhat Difficult Recursion)
 
 /// #17: Generic Stack
-
 
 /// #18: Recursive search through binary tree :
 
