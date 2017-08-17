@@ -625,14 +625,62 @@ let elementString = try? htmlElement?.asHTML()
 htmlElement = nil
 
 /// #13: Draw circle using math
+print("****** Draw circle using math ******")
+// do another UI-focused-practice project
 
 /// #14: Social media app :
+print("****** Social media app ******")
+// do another UI-focused-practice project
 
 /// #15: Counting Palindromes :
+let givenString = "madam anna kayak evernote anna Civic racecar Civic anna anna anna"
+
+func countingPalindrome(givenString: String) -> [String:Int] {
+    var resultDict = [String:Int]()
+    
+    let separatedString = givenString.components(separatedBy: " ")
+    
+    separatedString.forEach({word in
+        if isPalindrome(word: word) {
+            print("Palindrome found : \(word)!")
+            
+            if resultDict[word] != nil {
+                if let count = resultDict[word] {
+                    resultDict[word] = count + 1
+                }
+            } else {
+                resultDict[word] = 1
+            }
+        } else {
+            print("Palindrome NOT found! : \(word)")
+        }
+    })
+    
+    return resultDict
+}
+
+func isPalindrome(word: String) -> Bool {
+    let stringArray = Array(word.lowercased().characters)
+    var currentIndex = 0
+    
+    while currentIndex < stringArray.count / 2 {
+        if stringArray[currentIndex] != stringArray[stringArray.count - currentIndex - 1] {
+            return false
+        }
+        currentIndex += 1
+    }
+    
+    return true
+}
+
+let result = countingPalindrome(givenString:givenString)
+print(result)
+
 
 /// #16: Abstract Syntax Tree (Warning: Somewhat Difficult Recursion)
 
 /// #17: Generic Stack
+
 
 /// #18: Recursive search through binary tree :
 
