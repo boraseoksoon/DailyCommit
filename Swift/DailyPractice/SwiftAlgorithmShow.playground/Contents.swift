@@ -895,7 +895,129 @@ stack.push(nodeToPush: StackNode<Int>(value: 500))
 print("stack.printAllInStackOrder()")
 stack.printAllInStackOrder()
 
-/// #18: Recursive search through binary tree :
+/// #18: Generic Queue
+print("****************************")
+print("/****** Generic Queue *****/")
+print("****************************")
+
+enum QueueError : Error {
+    case peekFailure()
+    case queueUnderFlow()
+}
+
+class QueueNode <T>{
+    var value: T
+    var next: QueueNode <T>?
+    
+    init(value: T) {
+        self.value = value
+    }
+}
+
+class Queue <T>{
+    var count: Int
+    var headNode: QueueNode<T>?
+    
+    init(headNode: QueueNode<T>) {
+        self.headNode = headNode
+        self.count = 1
+    }
+    // ADT
+    /*
+     * 1. enqueue
+     * 2. dequeue
+     * 3. printAll
+     * 4. countQueueNode
+     * 5. peek
+     */
+    func enQueue(nodeToEnqueue:QueueNode<T>) -> Void {
+        if self.headNode != nil {
+            var currentNode = self.headNode
+            
+            while currentNode?.next != nil {
+                currentNode = currentNode?.next
+            }
+            currentNode?.next = nodeToEnqueue
+            
+        } else if self.headNode == nil {
+            self.headNode = nodeToEnqueue
+        }
+        
+        self.count += 1
+    }
+    
+    func deQueue() throws -> Void {
+        guard self.count >= 1 else {
+            throw QueueError.queueUnderFlow()
+        }
+        
+        self.headNode = self.headNode?.next
+        
+        self.count -= 1
+    }
+    
+    func printAll() {
+        var currrentNode = self.headNode
+        
+        while currrentNode != nil {
+            currrentNode = currrentNode?.next
+        }
+    }
+    
+    func countQueueNode() -> Int {
+        return self.count
+    }
+    
+    func peek() throws -> T {
+        if let value = self.headNode?.value {
+            return value
+        } else {
+            throw QueueError.peekFailure()
+        }
+    }
+}
+
+
+let headQueueNode = QueueNode(value: 0)
+let queue = Queue(headNode: headQueueNode)
+queue.enQueue(nodeToEnqueue: QueueNode(value: 1))
+queue.enQueue(nodeToEnqueue: QueueNode(value: 2))
+queue.enQueue(nodeToEnqueue: QueueNode(value: 3))
+queue.enQueue(nodeToEnqueue: QueueNode(value: 4))
+queue.enQueue(nodeToEnqueue: QueueNode(value: 5))
+queue.enQueue(nodeToEnqueue: QueueNode(value: 6))
+
+let count = queue.countQueueNode()
+print(count)
+queue.printAll()
+print("dequeue!")
+try? queue.deQueue()
+print("dequeue!")
+try? queue.deQueue()
+print("dequeue!")
+try? queue.deQueue()
+print("dequeue!")
+try? queue.deQueue()
+queue.printAll()
+
+if let peek = try? queue.peek() {
+    print("peek : \(peek)")
+}
+
+
+print("enqueue 100!")
+queue.enQueue(nodeToEnqueue: QueueNode(value: 100))
+print("enqueue 200!")
+queue.enQueue(nodeToEnqueue: QueueNode(value: 200))
+
+// since this is guaranteed,
+print("peek : \(try! queue.peek())")
+print("print all! ")
+queue.printAll()
+
+
+
+/// #19: Recursive search through binary tree :
 print("**************************************************")
 print("/****** Recursive search through binary tree *****/")
 print("**************************************************")
