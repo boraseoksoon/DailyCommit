@@ -144,9 +144,9 @@ if let x = typeCastingValue2 {
 }
 
 /// Expression Pattern
-let point = (1, 2)
+let point2 = (1, 2)
 
-switch point {
+switch point2 {
     case (0, 0):
         print("(0, 0) is at the origin.")
     case (-2...2, -2...2):
