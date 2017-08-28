@@ -8,11 +8,27 @@
 
 import Foundation
 
-print("/* Visitor Pattern */")
+print("/********* Creational *********/")
+
+print("/* Factory Method Pattern */")
+print("/* Abstract Factory Pattern */")
+print("/* Singleton Pattern */")
+print("/* Builder Pattern */")
+print("/* Prototype Pattern */")
+
+print("/********* Structural *********/")
+
+print("/* Adapter Pattern */")
+print("/* Bridge Pattern */")
+print("/* Composite Pattern */")
+print("/* Decorater Pattern */")
+print("/* Facade Pattern */")
+print("/* Flyweight Pattern */")
+print("/* Proxy Pattern */")
+
+print("/********* Behavioral *********/")
 
 print("/* Chain Of Responsibility Pattern */")
-
-print("/* Observer Pattern */")
 
 print("/* Command Pattern */")
 
@@ -46,6 +62,28 @@ invoker = DeviceButton(newCommand:volumeDownCmmand)
 
 invoker.press()
 invoker.press()
+
+
+print("/* Iterator Pattern */")
+
+let range = IteratorSequence(start: 10, end: 13)
+
+for i in range {
+    print(i)
+}
+
+print("/* Interpreter Pattern */")
+
+print("/* Mediator Pattern */")
+print("/* Memento Pattern */")
+
+print("/* Observer Pattern */")
+print("/* Visitor Pattern */")
+
+print("/* Template Method Pattern */")
+print("/* Strategy Pattern */")
+print("/* State Pattern */")
+
 
 
 
