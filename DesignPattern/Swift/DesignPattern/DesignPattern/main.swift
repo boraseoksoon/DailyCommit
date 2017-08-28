@@ -85,6 +85,24 @@ print("/* Memento Pattern */")
 print("/* Observer Pattern */")
 print("/* Visitor Pattern */")
 
+// visitors
+let taxVisitor: Visitor = TaxVisitor()
+let taxHolidayVisitor: Visitor = TaxHolidayVisitor()
+
+// visitables
+let necessityItem: Visitable = NecessityItem()
+let tobaccoItem: Visitable = TobaccoItem()
+let liquorItem: Visitable = LiquorItem()
+
+print("necessityItem.accept(visitor: taxVisitor) : \(necessityItem.accept(visitor: taxVisitor))")
+print("tobaccoItem.accept(visitor: taxVisitor) : \(tobaccoItem.accept(visitor: taxVisitor))")
+print("liquorItem.accept(visitor: taxVisitor) : \(liquorItem.accept(visitor: taxVisitor))")
+
+print("necessityItem.accept(visitor: taxHolidayVisitor) : \(necessityItem.accept(visitor: taxHolidayVisitor))")
+print("tobaccoItem.accept(visitor: taxHolidayVisitor) : \(tobaccoItem.accept(visitor: taxHolidayVisitor))")
+print("liquorItem.accept(visitor: taxHolidayVisitor) : \(liquorItem.accept(visitor: taxHolidayVisitor))")
+
+
 print("/* Template Method Pattern */")
 print("/* Strategy Pattern */")
 print("/* State Pattern */")
