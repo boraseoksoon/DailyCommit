@@ -29,6 +29,18 @@ print("/* Proxy Pattern */")
 print("/********* Behavioral *********/")
 
 print("/* Chain Of Responsibility Pattern */")
+var addCalculator: Chain = AddCalculator()
+var subtractCalculator: Chain = SubtractCalculator()
+var multiplytractCalculator: Chain = MultiplyCalculator()
+var dividetractCalculator: Chain = DivideCalculator()
+
+addCalculator.setNextChain(subtractCalculator)
+subtractCalculator.setNextChain(multiplytractCalculator)
+multiplytractCalculator.setNextChain(dividetractCalculator)
+
+let numberRequest: Number = Number(number1: 40, number2: 20, opeationString: "!")
+addCalculator.calculate(numberRequest)
+
 
 print("/* Command Pattern */")
 
@@ -41,20 +53,14 @@ var volumeUpCommand : Command = TurnDeviceUp(newDevice: television)
 var invoker = DeviceButton(newCommand:turnOnCommand)
 
 invoker.press()
-invoker.press()
-invoker.press()
-invoker.press()
 
 invoker = DeviceButton(newCommand:turnOffCommand)
 
 invoker.press()
-invoker.press()
-invoker.press()
+
 
 invoker = DeviceButton(newCommand:volumeUpCommand)
 
-invoker.press()
-invoker.press()
 invoker.press()
 invoker.press()
 
@@ -62,7 +68,6 @@ invoker = DeviceButton(newCommand:volumeDownCmmand)
 
 invoker.press()
 invoker.press()
-
 
 print("/* Iterator Pattern */")
 
