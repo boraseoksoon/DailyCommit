@@ -16,7 +16,7 @@ public class Main {
         while (iter.hasNext()) {
             System.out.println(iter.next());
         }
-        
+
         System.out.println("-------------English");
 
         EnglishNumber englishNumber = new EnglishNumber();
