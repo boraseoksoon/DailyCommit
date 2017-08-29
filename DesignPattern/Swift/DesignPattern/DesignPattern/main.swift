@@ -11,21 +11,50 @@ import Foundation
 print("/********* Creational *********/")
 
 print("/* Factory Method Pattern */")
+
 print("/* Abstract Factory Pattern */")
+
 print("/* Singleton Pattern */")
+
 print("/* Builder Pattern */")
+
 print("/* Prototype Pattern */")
 
+
+print("")
+print("")
+print("")
+print("")
 print("/********* Structural *********/")
 
 print("/* Adapter Pattern */")
+
 print("/* Bridge Pattern */")
+let marine: Marine = Marine(AP: 5)
+let medic: Medic = Medic(AP: 3)
+let ghost: Ghost = Ghost(AP: 8)
+let firebat: Firebat = Firebat(AP: 10)
+
+marine.attack(weapon: Rifle(AP: 10))
+marine.attack(weapon: CureSyringe(AP: 30))
+
+medic.attack(weapon: FirebatShotgun(AP: 100))
+
 print("/* Composite Pattern */")
+
 print("/* Decorater Pattern */")
+
 print("/* Facade Pattern */")
+
 print("/* Flyweight Pattern */")
+
 print("/* Proxy Pattern */")
 
+
+print("")
+print("")
+print("")
+print("")
 print("/********* Behavioral *********/")
 
 print("/* Chain Of Responsibility Pattern */")
@@ -79,10 +108,13 @@ for i in range {
 
 print("/* Interpreter Pattern */")
 
+
 print("/* Mediator Pattern */")
+
 print("/* Memento Pattern */")
 
 print("/* Observer Pattern */")
+
 print("/* Visitor Pattern */")
 
 // visitors
@@ -104,9 +136,9 @@ print("liquorItem.accept(visitor: taxHolidayVisitor) : \(liquorItem.accept(visit
 
 
 print("/* Template Method Pattern */")
+
 print("/* Strategy Pattern */")
+
 print("/* State Pattern */")
-
-
 
 
