@@ -5,34 +5,35 @@ import UIKit
 var str = "Today's algorithm for fun : merge sort"
 
 // merge sort
-func mergeSort (targetArray: [Int]) -> [Int] {
+func mergeSort<T: Comparable>(targetArray: [T]) -> [T] {
     guard targetArray.count > 1 else {
         return targetArray
     }
     
-    let leftArray = Array(targetArray[0..<targetArray.count/2])
-    let rightArray = Array(targetArray[targetArray.count/2..<targetArray.count])
+    let leftArray = Array<T>(targetArray[0..<targetArray.count/2])
+    let rightArray = Array<T>(targetArray[targetArray.count/2..<targetArray.count])
     
-    return merge(left: mergeSort(targetArray: leftArray), right: mergeSort(targetArray: rightArray))
+    return merge(leftArray: mergeSort(targetArray: leftArray), rightArray: mergeSort(targetArray: rightArray))
 }
 
-func merge(left: [Int], right: [Int]) -> [Int] {
-    var mergedArray = [Int]()
-    var mutableLeft = left
-    var mutableRight = right
+// sub-merge in.
+func merge<T: Comparable>(leftArray: [T], rightArray: [T]) -> [T] {
+    var mergedArray = [T]()
+    var mutableLeftArray = leftArray
+    var mutableRightArray = rightArray
     
-    while mutableLeft.count > 0 && mutableRight.count > 0 {
-        if mutableLeft.first! > mutableRight.first! {
-            mergedArray.append(mutableRight.removeFirst())
+    while mutableLeftArray.count > 0 && mutableRightArray.count > 0 {
+        if mutableLeftArray.first! > mutableRightArray.first! {
+            mergedArray.append(mutableRightArray.removeFirst())
         } else {
-            mergedArray.append(mutableLeft.removeFirst())
+            mergedArray.append(mutableLeftArray.removeFirst())
         }
     }
     
-    return mergedArray + mutableLeft + mutableRight
+    return mergedArray + mutableLeftArray + mutableRightArray
 }
 
-let arr = Array(0...10).map { _ in Int(arc4random_uniform(10000)) + 1 }
+let arr = Array(0...10).map { _ in UInt(arc4random_uniform(10000)) + 1 }
 print("merge sort before : \(arr)")
 let sortedArr = mergeSort(targetArray: arr)
 print("merge sort after : \(sortedArr)")
