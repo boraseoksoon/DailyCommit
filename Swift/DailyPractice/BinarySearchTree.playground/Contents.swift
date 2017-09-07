@@ -36,6 +36,10 @@ class BinarySearchTree {
     }
   }
   
+  var preOrderNodeList = [BSTNode]()
+  var inOrderNodeList = [BSTNode]()
+  var postOrderNodeList = [BSTNode]()
+  
   var root: BSTNode?
   
   init(rootNodeValue: Int) {
@@ -110,30 +114,27 @@ class BinarySearchTree {
   }
   
   func removeIn(value: Int, currentNode: inout BSTNode?) -> Bool {
-    guard currentNode != nil else { return false }
+    guard currentNode != nil else {
+      return false
+    }
     
     if value == currentNode!.value {
       // remove node having no child node to be removed
-      if currentNode!.left == nil && currentNode!.right == nil {
+      if currentNode?.left == nil && currentNode?.right == nil {
         currentNode = nil
       }
       
       // remove node having one child node to be removed
-      if currentNode!.left != nil && currentNode!.right == nil {
+      if currentNode?.left != nil && currentNode?.right == nil {
         currentNode = currentNode!.left
-        currentNode?.left = nil
-      } else if currentNode!.left == nil && currentNode!.right != nil {
+      } else if currentNode?.left == nil && currentNode?.right != nil {
         currentNode = currentNode?.right
-        currentNode!.right = nil
       }
       
       // remove node having two child node to be removed
-      if currentNode!.left != nil && currentNode!.right != nil {
+      if currentNode?.left != nil && currentNode?.right != nil {
         let leastNodeValue = searchLeastNodeValueToLeft(from: currentNode!.right)
-        // print("leastNodeValue : \(leastNodeValue)")
         currentNode?.value = leastNodeValue
-        
-        // remove
       }
       
       return true
@@ -189,6 +190,8 @@ class BinarySearchTree {
   private func preOrderTraverseIn(from rootNode: BSTNode?) -> Void {
     guard rootNode != nil else { return }
     // VLR
+    preOrderNodeList.append(rootNode!)
+    
     print("V : \(rootNode!.value)")
     preOrderTraverseIn(from: rootNode!.left)
     preOrderTraverseIn(from: rootNode!.right)
@@ -197,8 +200,12 @@ class BinarySearchTree {
   private func inOrderTraverseIn(from rootNode: BSTNode?) -> Void {
     guard rootNode != nil else { return }
     // LVR
+    
     inOrderTraverseIn(from: rootNode!.left)
+    
     print("V : \(rootNode!.value)")
+    inOrderNodeList.append(rootNode!)
+    
     inOrderTraverseIn(from: rootNode!.right)
   }
   
@@ -208,6 +215,8 @@ class BinarySearchTree {
     postOrderTraverseIn(from: rootNode!.left)
     postOrderTraverseIn(from: rootNode!.right)
     print("V : \(rootNode!.value)")
+    
+    postOrderNodeList.append(rootNode!)
   }
 }
 
@@ -324,34 +333,72 @@ bst.traverse(nil) { result in
 
 
 
-//bst.traverse(.inOrder)
-//bst.traverse(.postOrder)
+let bst2 = BinarySearchTree(rootNodeValue: 50)
+print("** insert **")
+print(bst2.insert(value: 10))
+print(bst2.insert(value: 101))
+print(bst2.insert(value: 50))
+print(bst2.insert(value: 30))
+print(bst2.insert(value: 204))
 
+print("** search ** ")
+print(bst2.search(value: 5))
+print(bst2.search(value: 10))
+print(bst2.search(value: 101))
+print(bst2.search(value: 50))
+print(bst2.search(value: 30))
+print(bst2.search(value: 10000))
 
+print("** remove ** ")
+print(bst2.remove(value: 10000000))
+print(bst2.remove(value: 100000))
+print(bst2.remove(value: 5))
+print(bst2.remove(value: 10))
+print(bst2.remove(value: 30))
+print(bst2.remove(value: 50))
+print(bst2.remove(value: 101))
+print("** search again ** ")
+print(bst2.search(value: 204))
 
+print("** traverse for bst2 ** ")
+//           '50'
+//         /    \
+//       '10'   '101'
+//          \      \
+//         '30'   '204'
 
-/*
- print("** insert **")
- print(bst.insert(value: 10))
- print(bst.insert(value: 101))
- print(bst.insert(value: 50))
- print(bst.insert(value: 30))
- print(bst.insert(value: 204))
- 
- print("** search ** ")
- print(bst.search(value: 5))
- print(bst.search(value: 10))
- print(bst.search(value: 101))
- print(bst.search(value: 50))
- print(bst.search(value: 30))
- print(bst.search(value: 10000))
- 
- print("** remove ** ")
- print(bst.remove(value: 10000000))
- print(bst.remove(value: 100000))
- print(bst.remove(value: 5))
- print(bst.remove(value: 10))
- print(bst.remove(value: 30))
- print(bst.remove(value: 50))
- */
+bst2.traverse(.preOrder) { result in
+  switch result {
+  case .success(let traverseWay):
+    switch traverseWay {
+    case .preOrder:
+      print("preOrder!")
+      break
+    case .inOrder:
+      print("inOrder!")
+      break
+    case .postOrder:
+      print("postOrder!")
+      break
+    }
+    break
+  case .failure(let errorReason):
+    print("traverse failure : \(errorReason)")
+    break
+  }
+}
 
+print("** checking bst.preOrderNodeList ")
+for node in bst.preOrderNodeList {
+  print(node.value)
+}
+
+print("** checking bst.inOrderNodeList ")
+for node in bst.inOrderNodeList {
+  print(node.value)
+}
+
+print("** checking bst.postOrderNodeList ")
+for node in bst.postOrderNodeList {
+  print(node.value)
+}
