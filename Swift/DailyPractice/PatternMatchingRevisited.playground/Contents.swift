@@ -59,7 +59,8 @@ let other: AnyObject? = NSArray()
 let book = (title, description, price, other)
 
 switch book {
-    case ("swift", _?, let price, is NSArray): print(price)
+    case ("swift", _?, let price, is NSArray):
+      print(price)
     default: ()
 }
 
