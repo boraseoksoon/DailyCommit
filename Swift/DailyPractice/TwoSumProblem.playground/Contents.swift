@@ -1,38 +1,150 @@
-//: Playground - noun: a place where people can play
-
-import UIKit
-
-var str = "2017/09/15 Two sum Problem"
-
-//The Two-Sum problem asks you to find all the pair of two integers in an unsorted array that sums up to a given n. So let’s look at the following array as an example:
 //
-//[4, 2, 5, 2, 9, -3]
+//  main.swift
+//  TwoSum
 //
-//Let’s say the sum we’re looking for is 6. Well the program should return [4, 2] [9, -3] because each pair adds to 6.
+//  Created by Seoksoon Jang on 2017. 9. 17..
+//  Copyright © 2017년 Seoksoon Jang. All rights reserved.
+//
 
-// * Let's say duplication two sum pair elements are not allowed as answer.
+import Foundation
 
-// let's say two-sum value we're looking for is 4.
+let twoSumValue = 4
+let inputList = [4,2,-5,2,9,-3,3,1,-9]
 
-// O(N^2) complexity prototype.
+var str = "Solving TwoSum Problem in Total"
+
+// Brute Force Way for O(N^2) complexity prototype.
 func twoSum(_ twoSum: Int, inputList: [Int]) -> [[Int]]? {
-  var inputListMutable = inputList
   var outputList: [[Int]]? = [[Int]]()
-  for index in stride(from: 0, to: inputListMutable.count, by: 1) {
-    for subIndex in stride(from: index+1, to: inputListMutable.count, by: 1) {
-      if inputListMutable[index] + inputListMutable[subIndex] == twoSum {
-        outputList?.append([inputListMutable[index], inputListMutable[subIndex]])
-        inputListMutable.remove(at: index)
-        inputListMutable.remove(at: subIndex - 1)
-        break
+  
+  for index in 0..<inputList.count {
+    guard index < inputList.count else { continue }
+    for subIndex in index+1..<inputList.count {
+      guard subIndex < inputList.count else { continue }
+      if inputList[index] + inputList[subIndex] == twoSum {
+        outputList?.append([inputList[index], inputList[subIndex]])
+      }
+    }
+  }
+  
+  // return outputList
+  var previous: [Int]?
+  return outputList?.filter{
+    if previous != nil {
+      if previous! == $0 {
+        return false
+      }
+    }
+    previous = $0
+    return true
+  }
+}
+
+print("****** brute force *******")
+if case let outputList? = twoSum(twoSumValue, inputList: inputList) {
+  outputList.forEach { answer in print(answer) }
+} else {
+  print("There is No Answer.")
+}
+
+
+func binarySearch(_ searchValue: Int,
+                  inList: [Int],
+                  startIndex: Int,
+                  endIndex: Int,
+                  excludeIndex: Int? = nil) -> (Int, Bool) {
+  let middleIndex = (startIndex + endIndex) / 2
+  if startIndex > endIndex { return (-1, false) }                 // condition to terminate recursion.
+  guard excludeIndex != middleIndex else { return (-1, false) }   // exclude self index.
+  
+  if searchValue > inList[middleIndex] {
+    return binarySearch(searchValue,
+                        inList: inList,
+                        startIndex:middleIndex + 1,
+                        endIndex: endIndex,
+                        excludeIndex: excludeIndex)
+  } else if searchValue < inList[middleIndex] {
+    return binarySearch(searchValue,
+                        inList: inList,
+                        startIndex:startIndex,
+                        endIndex: middleIndex - 1,
+                        excludeIndex: excludeIndex)
+  } else {
+    return (middleIndex, true)
+  }
+}
+
+let sortedList = inputList.sorted()
+let result = binarySearch(4,
+                          inList: sortedList,
+                          startIndex:inputList.startIndex,
+                          endIndex: inputList.count - 1)
+
+func twoSum_BinarySearch(_ twoSum: Int, inputList: [Int]) -> [[Int]]? {
+  var outputList: [[Int]]? = [[Int]]()
+  var mutableInputList = inputList
+  
+  for index in 0..<mutableInputList.count {
+    guard index < mutableInputList.count else { return outputList }
+    let compliment = twoSum - mutableInputList[index]
+    
+    let tuple = binarySearch(compliment,
+                             inList:mutableInputList,
+                             startIndex: mutableInputList.startIndex,
+                             endIndex: mutableInputList.count - 1,
+                             excludeIndex: index)
+    
+    if (tuple.1) {
+      outputList?.append([mutableInputList[index], mutableInputList[tuple.0]])
+      mutableInputList.remove(at: index)
+      if tuple.0 < index {
+        mutableInputList.remove(at: tuple.0)
+      } else {
+        mutableInputList.remove(at: tuple.0 - 1)
       }
     }
   }
   return outputList
 }
 
-if case let outputList? = twoSum(3, inputList: [4,2,-5,2,9,-3,3,1]) {
+print("**** binary search ****")
+if case let outputList? = twoSum_BinarySearch(twoSumValue, inputList: inputList.sorted()) {
   outputList.forEach { answer in print(answer) }
 } else {
-  print("There is No Answer.") // it should be [[4,2], [-5,9]]
+  print("There is No Answer.")
 }
+
+
+// Pointing Way for Time Complexity O(N)
+func twoSum_Pointer(_ twoSum: Int, inputList: [Int]) -> [[Int]]? {
+  var outputList: [[Int]]? = [[Int]]()
+  var mutableInputList = inputList
+  
+  for _ in 0..<mutableInputList.count {
+    var startIndex = mutableInputList.startIndex
+    var endIndex = mutableInputList.count - 1
+    
+    while startIndex < endIndex {
+      if mutableInputList[startIndex] + mutableInputList[endIndex] > twoSum {
+        endIndex -= 1
+      } else if mutableInputList[startIndex] + mutableInputList[endIndex] < twoSum {
+        startIndex += 1
+      } else {
+        outputList?.append([mutableInputList[startIndex], mutableInputList[endIndex]])
+        mutableInputList.remove(at: endIndex)
+        mutableInputList.remove(at: startIndex)
+        break
+      }
+    }
+  }
+  
+  return outputList
+}
+
+print("******* pointer *******")
+if case let outputList? = twoSum_Pointer(twoSumValue, inputList: inputList.sorted()) {
+  outputList.forEach { answer in print(answer) }
+} else {
+  print("There is No Answer.")
+}
+
