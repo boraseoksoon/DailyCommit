@@ -8,7 +8,7 @@
 
 import Foundation
 
-let twoSumValue = 4
+let twoSumValue = 11
 let inputList = [4,2,-5,2,9,-3,3,1,-9]
 
 var str = "Solving TwoSum Problem in Total"
@@ -27,7 +27,6 @@ func twoSum(_ twoSum: Int, inputList: [Int]) -> [[Int]]? {
     }
   }
   
-  // return outputList
   var previous: [Int]?
   return outputList?.filter{
     if previous != nil {
@@ -143,6 +142,41 @@ func twoSum_Pointer(_ twoSum: Int, inputList: [Int]) -> [[Int]]? {
 
 print("******* pointer *******")
 if case let outputList? = twoSum_Pointer(twoSumValue, inputList: inputList.sorted()) {
+  outputList.forEach { answer in print(answer) }
+} else {
+  print("There is No Answer.")
+}
+
+
+// Hash
+func twoSum_Hash(_ twoSum: Int, inputList: [Int]) -> [[Int]]? {
+  var dict: [Int:Int] = [Int:Int]()
+  var outputList: [[Int]]? = [[Int]]()
+  
+  for index in 0..<inputList.count {
+    let compliment = twoSum - inputList[index]
+    if dict[inputList[index]] != nil {
+      outputList?.append([inputList[index], dict[inputList[index]]!])
+    } else {
+      dict[compliment] = inputList[index]
+    }
+  }
+  
+  // filter if there is duplicated tuple.
+  var previous: [Int]?
+  return outputList?.filter{
+    if previous != nil {
+      if previous! == $0 {
+        return false
+      }
+    }
+    previous = $0
+    return true
+  }
+}
+
+print("****** hash ******")
+if case let outputList? = twoSum_Hash(twoSumValue, inputList: inputList.sorted()) {
   outputList.forEach { answer in print(answer) }
 } else {
   print("There is No Answer.")
