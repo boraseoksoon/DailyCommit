@@ -43,7 +43,10 @@ class TodoTableViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    if let realmFilePath = Realm.Configuration.defaultConfiguration.fileURL {
+      print("Realm default file path for this app : ", realmFilePath)
+    }
+
     self.customizationUI()
     
     // 'Realm' Read
