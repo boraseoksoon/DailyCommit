@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Z3o-ib-Lnn">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Todo Table View Controller-->
+        <scene sceneID="XTX-go-ibw">
+            <objects>
+                <tableViewController storyboardIdentifier="TodoTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MEv-at-AcF" customClass="TodoTableViewController" customModule="RealmTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="zhx-YX-fFO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoTableViewCell" id="Kd6-vh-aju" customClass="TodoTableViewCell" customModule="RealmTest" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kd6-vh-aju" id="53M-Cp-5MF">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="job list" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYe-cU-xHS">
+                                            <rect key="frame" x="22" y="11" width="50" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Vg-Mh-Jcu">
+                                            <rect key="frame" x="318" y="8" width="51" height="31"/>
+                                        </switch>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="1Vg-Mh-Jcu" firstAttribute="top" secondItem="53M-Cp-5MF" secondAttribute="top" constant="8" id="AgC-Kn-BbD"/>
+                                        <constraint firstItem="fYe-cU-xHS" firstAttribute="leading" secondItem="53M-Cp-5MF" secondAttribute="leading" constant="22" id="QVm-qy-6J2"/>
+                                        <constraint firstItem="fYe-cU-xHS" firstAttribute="centerY" secondItem="53M-Cp-5MF" secondAttribute="centerY" id="YeL-8f-5qm"/>
+                                        <constraint firstAttribute="trailing" secondItem="1Vg-Mh-Jcu" secondAttribute="trailing" constant="8" id="ee5-wT-qTn"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="isDone" destination="1Vg-Mh-Jcu" id="FG6-QO-nTW"/>
+                                    <outlet property="jobListLabel" destination="fYe-cU-xHS" id="OY6-oF-fna"/>
+                                    <segue destination="h5E-jU-5yT" kind="show" identifier="EditTodo" id="eeo-0q-ugE"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="3mh-CK-VlU">
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3mh-CK-VlU" id="gFc-Wx-xyG">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="MEv-at-AcF" id="NhS-x7-Ve0"/>
+                            <outlet property="delegate" destination="MEv-at-AcF" id="ITf-08-4xM"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="R2E-ei-k9D"/>
+                    <connections>
+                        <segue destination="h5E-jU-5yT" kind="show" identifier="SaveTodo" id="cFi-hv-LDD"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pd1-Jt-jFy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="817" y="-30"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cCU-4s-bz3">
+            <objects>
+                <navigationController id="Z3o-ib-Lnn" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vhX-eW-TgW">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="MEv-at-AcF" kind="relationship" relationship="rootViewController" id="CfN-wz-PVU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wBX-ww-2wK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="25" y="-30"/>
+        </scene>
+        <!--Insert Todo View Controller-->
+        <scene sceneID="7CN-BF-the">
+            <objects>
+                <viewController id="h5E-jU-5yT" customClass="InsertTodoViewController" customModule="RealmTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SST-sL-fwQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ht1-f8-HeB">
+                                <rect key="frame" x="37.5" y="350.5" width="300" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4zs-dS-VD4">
+                                <rect key="frame" x="163" y="390.5" width="51" height="31"/>
+                            </switch>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RNa-Td-RpI">
+                                <rect key="frame" x="325" y="64" width="34" height="30"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveAction:" destination="h5E-jU-5yT" eventType="touchUpInside" id="UWB-L5-cr0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0m0-xp-PVu" firstAttribute="trailing" secondItem="RNa-Td-RpI" secondAttribute="trailing" constant="16" id="2ib-Vx-ltC"/>
+                            <constraint firstItem="ht1-f8-HeB" firstAttribute="centerY" secondItem="0m0-xp-PVu" secondAttribute="centerY" id="AbU-e8-G1G"/>
+                            <constraint firstItem="RNa-Td-RpI" firstAttribute="top" secondItem="0m0-xp-PVu" secondAttribute="top" id="Ao5-wC-vOO"/>
+                            <constraint firstItem="4zs-dS-VD4" firstAttribute="centerX" secondItem="ht1-f8-HeB" secondAttribute="centerX" id="Joc-jO-D6s"/>
+                            <constraint firstItem="ht1-f8-HeB" firstAttribute="centerX" secondItem="0m0-xp-PVu" secondAttribute="centerX" id="Z8o-ix-SEu"/>
+                            <constraint firstItem="4zs-dS-VD4" firstAttribute="top" secondItem="ht1-f8-HeB" secondAttribute="bottom" constant="10" id="i6m-c9-ibv"/>
+                            <constraint firstItem="ht1-f8-HeB" firstAttribute="width" secondItem="SST-sL-fwQ" secondAttribute="width" multiplier="0.8" id="vjK-rx-J6R"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0m0-xp-PVu"/>
+                    </view>
+                    <connections>
+                        <outlet property="isFinishedSwitch" destination="4zs-dS-VD4" id="GJZ-Ha-nEz"/>
+                        <outlet property="todoTextField" destination="ht1-f8-HeB" id="VTA-uI-DEB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4VM-1t-sg1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1839" y="-30"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="cFi-hv-LDD"/>
+    </inferredMetricsTieBreakers>
+</document>
