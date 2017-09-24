@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WKWebView and JavaScript in iOS 9 - O-mkar.com</title>
+    <!--
+    <script type="text/javascript" src="https://raw.githubusercontent.com/O-mkar/WKWebView-and-JavaScript-in-iOS-9-Example-/master/WEBPART/main.js"></script>
+    -->
+    <script>
+      function sayHiToNativeApp() {
+        try {
+          window.webkit.messageHandlers.callback.postMessage("Hi User.");
+          
+        } catch (err) {
+          console.log('There was some problem sending message native app');
+        }
+      }
+    
+    function setText(message) {
+      document.getElementsByClassName("title")[0].innerHTML = message;
+      sayHiToNativeApp();
+    }
+    
+    function invokeAlert() {
+      var x = document.getElementById("myBtn");
+      x.disabled = false;
+    }
+    
+    function setText(message) {
+      document.getElementsByClassName("title")[0].innerHTML = message;
+      sayHiToNativeApp();
+    }
+    
+    </script>
+    
+  </head>
+  <body style="padding-top: 100px;">
+    <h1 class="title"></h1>
+    KKKK
+    
+    Alert Message: <input type='text' name='alert' id='alert' value='Alert!!!'/><br>
+    <button onclick='invokeAlert()'>Swift Alert iOS</button><br/><br/>
+
+    <button type="button" id="myBtn" onclick="myFunction()">Try it</button>
+    
+    <script>
+      function myFunction() {
+        var x = document.getElementById("myBtn");
+        x.disabled = true;
+      }
+    </script>
+  </body>
+</html>
