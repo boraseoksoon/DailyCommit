@@ -68,6 +68,29 @@ class TodoTableViewController: UITableViewController {
   }
   
   // MARK: - Table view data source
+  override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    /*
+    let editAction = UITableViewRowAction(style: .normal, title: "수정") { (rowAction, indexPath) in
+      //TODO: edit the row at indexPath here
+    }
+    editAction.backgroundColor = .blue
+    
+    let deleteAction = UITableViewRowAction(style: .normal, title: "삭제") { (rowAction, indexPath) in
+      //TODO: Delete the row at indexPath here
+    }
+    deleteAction.backgroundColor = .red
+    
+    return [editAction,deleteAction]
+    */
+    let deleteAction = UITableViewRowAction(style: .normal, title: "删除") { (rowAction, indexPath) in
+      //TODO: Delete the row at indexPath here
+    }
+    deleteAction.backgroundColor = .red
+    
+    return [deleteAction]
+    
+  }
+  
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       let todo = todos[indexPath.row]

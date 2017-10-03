@@ -9,6 +9,11 @@
 import UIKit
 
 class FourthViewController: UIViewController {
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    print("FourthViewController!")
+  }
+  
   let myView = UIView()
   lazy var topAnchor: NSLayoutConstraint = {
     return self.myView.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor)

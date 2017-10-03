@@ -13,6 +13,12 @@ class ThirdViewController: UIViewController {
   let subView = UIView()
   var isAnimationCommit: Bool = false
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    print("ThirdViewController!")
+  }
+  
+  
   lazy var viewConstraint: [NSLayoutConstraint] = {
     return [
       NSLayoutConstraint(item: self.myView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: self.view.frame.size.height * 0.25),

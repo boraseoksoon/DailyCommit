@@ -14,6 +14,11 @@ class SecondViewController: UIViewController {
   
   @IBOutlet var exampleLabel: UILabel!
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    print("SecondViewController!")
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     

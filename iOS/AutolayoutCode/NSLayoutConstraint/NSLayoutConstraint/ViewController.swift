@@ -15,6 +15,11 @@ class ViewController: UIViewController {
   
   let thirdView = UIView()
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    print("ViewController!")
+  }
+    
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
@@ -41,10 +46,6 @@ class ViewController: UIViewController {
     } else {
       self.getBackAnimation()
     }
-    
-//    if let viewController = UIStoryboard(name: "Main", bundle:nil).instantiateViewController(withIdentifier: "SecondViewController") as? UIViewController {
-//      self.present(viewController, animated: true, completion: nil)
-//    }
   }
   
   func changeAnimation() {
