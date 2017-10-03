@@ -2,9 +2,46 @@
 
 import UIKit
 
-var str = "Hello, playground"
-
 // Boxing
+struct SomeStruct<T> {
+  var variable: T
+}
+
+extension SomeStruct where T: Collection {
+  var description: String {
+    return "description"
+  }
+}
+
+var boxingStruct = SomeStruct<Array<String>>(variable: Array<String>())
+boxingStruct.variable.append("111입니다.")
+boxingStruct.variable.append("222입니다.")
+boxingStruct.variable.append("333입니다.")
+boxingStruct.variable.append("444입니다.")
+
+boxingStruct.variable[0]
+boxingStruct.variable[1]
+boxingStruct.variable[2]
+boxingStruct.variable[3]
+
+for i in boxingStruct.variable {
+  print("첫번째 이터레이션, boxing iteration : ", i)
+}
+
+print("** end of iteration **")
+
+for i in boxingStruct.variable {
+  print("두번째 이터레이션, boxing iteration : ", i)
+}
+
+
+
+
+
+
+
+
+
 class Some<Base> {
   var value: Base? = nil
 }
@@ -52,7 +89,6 @@ let apple = Apple()
 print(apple.description)
 print(apple.name)
 
-// Equatable
 struct Country {
   let name: String
   let capital: String
@@ -81,6 +117,7 @@ let containsObject = bucketList.contains { (country) -> Bool in
 
 print(containsObject)
 
+// Equatable
 extension Country: Equatable {
   static func == (lhs: Country, rhs: Country) -> Bool {
     return lhs.name == rhs.name &&
@@ -97,22 +134,10 @@ unvisited == australia     // true
 
 bucketList.contains(canada)
 
+
 let sortedBucket = bucketList.sorted { $0.name < $1.name }
-
-// let sortedBucket = bucketList.sorted(by: { $0.name < $1.name } )
-
-for (i,c) in sortedBucket.enumerated() {
-  print(i, c)
-}
-
 // Comparable
 extension Country: Comparable {
-//  static func == (lhs: Country, rhs: Country) -> Bool {
-//    return lhs.name == rhs.name &&
-//      lhs.capital == rhs.capital &&
-//      lhs.visited == rhs.visited
-//  }
-  
   static func < (lhs: Country, rhs: Country) -> Bool {
     return lhs.name < rhs.name ||
       (lhs.name == rhs.name && lhs.capital < rhs.capital) ||
@@ -165,3 +190,18 @@ func multipleCurrying(_ x: Int) -> (Int) -> Int {
 
 multiple(10, 20)
 multipleCurrying(10)(20)
+
+// Currying level 2.
+func curry <A, B, C>(_ body: @escaping (A, B) -> C) -> (A) -> (B) -> C {
+  return { x in { y in body(x, y) } }
+}
+
+func add(x: Int, y: Int) -> Int { return x + y }
+func multiply(x: Int, y: Int) -> Int { return x * y }
+let plusOne = curry(add)(1)
+let y = plusOne(4)
+print(y)
+
+let multipleThree = curry(multiply)(3)
+let z = multipleThree(4)
+print(z)
