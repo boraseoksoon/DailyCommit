@@ -7,6 +7,20 @@
 //
 
 import UIKit
+import RealmSwift
+import RxSwift
+import RxCocoa
+
+/*************************************/
+/// Global Areaa
+// 'Realm' Global Instances
+
+var realm = try! Realm()
+var todos: Results<Todo> = realm.objects(Todo.self)
+var signUpUsers: Results<SignUpUsers> = realm.objects(SignUpUsers.self)
+var signUpViewModel = SignUpViewModel()
+// var signUpUsers: Variable<Results<SignUpUsers>>?
+/*************************************/
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
+    
+    if let realmFilePath = Realm.Configuration.defaultConfiguration.fileURL {
+      print("Realm default file path for this app : ", realmFilePath)
+    }
+    
     return true
   }
 
@@ -40,7 +59,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationWillTerminate(_ application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
-
-
 }
-

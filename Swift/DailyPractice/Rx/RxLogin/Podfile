@@ -8,6 +8,7 @@ target 'RxLogin' do
   # Pods for RxLogin
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'RealmSwift'
 
   target 'RxLoginTests' do
     inherit! :search_paths
