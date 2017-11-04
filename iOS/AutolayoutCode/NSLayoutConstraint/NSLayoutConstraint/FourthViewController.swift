@@ -73,7 +73,6 @@ class FourthViewController: UIViewController {
         break
       }
 
-      
       self.view.layoutIfNeeded()
     })
   }
@@ -83,16 +82,7 @@ class FourthViewController: UIViewController {
     myView.translatesAutoresizingMaskIntoConstraints = false
     myView.backgroundColor = UIColor.blue
     self.view.addSubview(myView)
-    
-    
-    
-    
-    // Do any additional setup after loading the view.
-//    topAnchor.isActive = true
-//    leadingAnchor.isActive = true
-//    trailingAnchor.isActive = true
-//    heightAnchor.isActive = true
-    
+
     NSLayoutConstraint.activate(self.constraints)
     
     // NSLayoutConstraint.deactivate(animationConstraints)
@@ -102,16 +92,4 @@ class FourthViewController: UIViewController {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-  
-  
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destinationViewController.
-   // Pass the selected object to the new view controller.
-   }
-   */
-  
 }
