@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="grn-Xe-GRO">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Dog ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9P0-RA-3bT">
+                                <rect key="frame" x="56.5" y="131" width="262.5" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Dog Age" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3me-mm-hfP">
+                                <rect key="frame" x="56.5" y="171" width="262.5" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Dog Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tcp-xN-dV5">
+                                <rect key="frame" x="56.5" y="211" width="262.5" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ef-gV-OBX">
+                                <rect key="frame" x="164.5" y="251" width="46" height="30"/>
+                                <state key="normal" title="Create"/>
+                                <connections>
+                                    <action selector="addToDatabase:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xBB-ZM-Jaa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R61-KH-vim">
+                                <rect key="frame" x="170" y="356" width="35" height="30"/>
+                                <state key="normal" title="Read"/>
+                                <connections>
+                                    <action selector="searchAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9dj-Ro-leM"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsO-6V-Hu0">
+                                <rect key="frame" x="10" y="636" width="17" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2VW-By-3Af">
+                                <rect key="frame" x="42" y="636" width="30" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SbH-YI-neV">
+                                <rect key="frame" x="82" y="636" width="43" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Searching by dogID..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lm6-3e-rAj">
+                                <rect key="frame" x="56.5" y="316" width="262.5" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pCb-qY-Kym">
+                                <rect key="frame" x="56.5" y="251" width="51" height="30"/>
+                                <state key="normal" title="Update"/>
+                                <connections>
+                                    <action selector="updateAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YzC-Va-KJw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mht-Ns-sSp">
+                                <rect key="frame" x="56.5" y="356" width="45" height="30"/>
+                                <state key="normal" title="Delete"/>
+                                <connections>
+                                    <action selector="deleteAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wjn-4L-VU0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SbH-YI-neV" secondAttribute="bottom" constant="10" id="1Md-oF-zwn"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="bsO-6V-Hu0" secondAttribute="bottom" constant="10" id="2xo-oV-Wsd"/>
+                            <constraint firstItem="9P0-RA-3bT" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.7" id="3H8-fg-xmp"/>
+                            <constraint firstItem="3me-mm-hfP" firstAttribute="width" secondItem="9P0-RA-3bT" secondAttribute="width" id="3Le-yX-N5T"/>
+                            <constraint firstItem="7Ef-gV-OBX" firstAttribute="top" secondItem="tcp-xN-dV5" secondAttribute="bottom" constant="10" id="5GF-np-tAi"/>
+                            <constraint firstItem="R61-KH-vim" firstAttribute="top" secondItem="lm6-3e-rAj" secondAttribute="bottom" constant="10" id="7Jm-Pq-3JW"/>
+                            <constraint firstItem="7Ef-gV-OBX" firstAttribute="centerX" secondItem="tcp-xN-dV5" secondAttribute="centerX" id="7vk-N6-U4p"/>
+                            <constraint firstItem="3me-mm-hfP" firstAttribute="centerX" secondItem="9P0-RA-3bT" secondAttribute="centerX" id="MH9-an-66U"/>
+                            <constraint firstItem="tcp-xN-dV5" firstAttribute="width" secondItem="3me-mm-hfP" secondAttribute="width" id="NOr-6f-TBi"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2VW-By-3Af" secondAttribute="bottom" constant="10" id="PQi-lY-dKm"/>
+                            <constraint firstItem="9P0-RA-3bT" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="0.4" id="PaH-oI-Ru1"/>
+                            <constraint firstItem="SbH-YI-neV" firstAttribute="leading" secondItem="2VW-By-3Af" secondAttribute="trailing" constant="10" id="Pc7-dL-LQ3"/>
+                            <constraint firstItem="9P0-RA-3bT" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="QTM-0C-5bN"/>
+                            <constraint firstItem="pCb-qY-Kym" firstAttribute="leading" secondItem="tcp-xN-dV5" secondAttribute="leading" id="TDA-k0-EcJ"/>
+                            <constraint firstItem="mht-Ns-sSp" firstAttribute="top" secondItem="lm6-3e-rAj" secondAttribute="bottom" constant="10" id="V0A-oT-csC"/>
+                            <constraint firstItem="tcp-xN-dV5" firstAttribute="top" secondItem="3me-mm-hfP" secondAttribute="bottom" constant="10" id="ZRO-Pl-UYE"/>
+                            <constraint firstItem="bsO-6V-Hu0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="bwE-by-h0m"/>
+                            <constraint firstItem="lm6-3e-rAj" firstAttribute="width" secondItem="tcp-xN-dV5" secondAttribute="width" id="dbx-6p-EWO"/>
+                            <constraint firstItem="3me-mm-hfP" firstAttribute="top" secondItem="9P0-RA-3bT" secondAttribute="bottom" constant="10" id="eiF-L0-dl4"/>
+                            <constraint firstItem="pCb-qY-Kym" firstAttribute="centerY" secondItem="7Ef-gV-OBX" secondAttribute="centerY" id="i43-79-LXA"/>
+                            <constraint firstItem="tcp-xN-dV5" firstAttribute="centerX" secondItem="3me-mm-hfP" secondAttribute="centerX" id="m54-aL-HDg"/>
+                            <constraint firstItem="lm6-3e-rAj" firstAttribute="top" secondItem="7Ef-gV-OBX" secondAttribute="bottom" constant="35" id="nVe-j4-Hw9"/>
+                            <constraint firstItem="R61-KH-vim" firstAttribute="centerX" secondItem="lm6-3e-rAj" secondAttribute="centerX" id="ti6-Ii-V6e"/>
+                            <constraint firstItem="mht-Ns-sSp" firstAttribute="leading" secondItem="lm6-3e-rAj" secondAttribute="leading" id="weV-t2-HDr"/>
+                            <constraint firstItem="lm6-3e-rAj" firstAttribute="centerX" secondItem="tcp-xN-dV5" secondAttribute="centerX" id="ycj-FZ-pjS"/>
+                            <constraint firstItem="2VW-By-3Af" firstAttribute="leading" secondItem="bsO-6V-Hu0" secondAttribute="trailing" constant="15" id="zws-YF-Jer"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="QxI-Tg-hXz"/>
+                    <connections>
+                        <outlet property="dogAgeLabel" destination="2VW-By-3Af" id="945-z4-AjN"/>
+                        <outlet property="dogAgeTextField" destination="3me-mm-hfP" id="xm2-FH-5Su"/>
+                        <outlet property="dogIDLabel" destination="bsO-6V-Hu0" id="WMa-tI-cGX"/>
+                        <outlet property="dogIDTextField" destination="9P0-RA-3bT" id="YB4-ZO-vJq"/>
+                        <outlet property="dogNameLabel" destination="SbH-YI-neV" id="5xg-YN-rh6"/>
+                        <outlet property="dogNameTextField" destination="tcp-xN-dV5" id="lwP-yc-yha"/>
+                        <outlet property="searchTextField" destination="lm6-3e-rAj" id="bFK-qK-X9k"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="262" y="260"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tXN-Th-NEG">
+            <objects>
+                <navigationController id="grn-Xe-GRO" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Bgk-Ep-JOI">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="5aO-HT-O4l"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ggh-kN-Z4w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-482" y="260"/>
+        </scene>
+    </scenes>
+</document>
